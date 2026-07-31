@@ -27,26 +27,36 @@ export default function Dashboard() {
           marginTop: "30px",
         }}
       >
-        <div style={cardStyle}>
-          <h3>💰 Revenue</h3>
-          <h2>₹0</h2>
-        </div>
+        <StatCard
+          title="Revenue"
+          value="₹0"
+          icon="💰"
+          color="#16a34a"
+        />
 
-        <div style={cardStyle}>
-          <h3>📦 Products</h3>
-          <h2>0</h2>
-        </div>
+        <StatCard
+          title="Products"
+          value="0"
+          icon="📦"
+          color="#2563eb"
+        />
 
-        <div style={cardStyle}>
-          <h3>👥 Customers</h3>
-          <h2>0</h2>
-        </div>
+        <StatCard
+          title="Customers"
+          value="0"
+          icon="👥"
+          color="#f59e0b"
+        />
 
-        <div style={cardStyle}>
-          <h3>📈 Sales</h3>
-          <h2>0</h2>
-        </div>
+        <StatCard
+          title="Sales"
+          value="0"
+          icon="📈"
+          color="#ef4444"
+        />
       </div>
+
+      <SalesChart />
 
       <div
         style={{
@@ -57,6 +67,7 @@ export default function Dashboard() {
         }}
       >
         <h2>🤖 AI Business Insights</h2>
+
         <p style={{ color: "#cbd5e1" }}>
           AI insights will appear here after business data is available.
         </p>
@@ -64,9 +75,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
-const cardStyle = {
-  background: "#1e293b",
-  borderRadius: "15px",
-  padding: "20px",
-};
