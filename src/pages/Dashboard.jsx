@@ -1,5 +1,6 @@
 import StatCard from "../components/StatCard";
 import SalesChart from "../components/SalesChart";
+import "../styles/dashboard.css";
 
 export default function Dashboard() {
   return (
