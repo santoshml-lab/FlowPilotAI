@@ -12,9 +12,18 @@ export default function Sidebar({ setPage }) {
         top: 0,
       }}
     >
-      <h2 style={{ marginBottom: "35px" }}>
-        🚀 FlowPilot AI
-      </h2>
+      <h2
+  style={{
+    marginBottom: "40px",
+    fontSize: "28px",
+    color: "#60a5fa",
+    fontWeight: "700",
+  }}
+>
+  🚀 FlowPilot AI
+</h2>
+        
+      
 
       <div style={menuStyle} onClick={() => setPage("dashboard")}>
         🏠 Dashboard
@@ -68,9 +77,16 @@ export default function Sidebar({ setPage }) {
 }
 
 const menuStyle = {
-  padding: "14px",
-  marginBottom: "10px",
-  borderRadius: "10px",
+  padding: "14px 18px",
+  marginBottom: "12px",
+  borderRadius: "14px",
   cursor: "pointer",
-  background: "#1f2937",
+  background: "#1e293b",
+  transition: "0.3s",
+  fontWeight: "600",
+  fontSize: "15px",
+  border: "1px solid #334155",
 };
+  
+  
+  
