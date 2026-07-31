@@ -7,18 +7,19 @@ export default function StatCard({
   return (
     <div
       style={{
-        background: "#1e293b",
-        borderRadius: "15px",
-        padding: "20px",
+        background: "linear-gradient(135deg,#1e293b,#0f172a)",
+        borderRadius: "20px",
+        padding: "24px",
         color: "white",
-        borderLeft: `5px solid ${color}`,
-        boxShadow: "0 5px 20px rgba(0,0,0,.25)",
+        border: `1px solid ${color}`,
+        boxShadow: `0 10px 30px ${color}30`,
+        transition: "0.3s",
       }}
     >
       <div
         style={{
-          fontSize: "32px",
-          marginBottom: "12px",
+          fontSize: "40px",
+          marginBottom: "15px",
         }}
       >
         {icon}
@@ -26,8 +27,8 @@ export default function StatCard({
 
       <h3
         style={{
-          margin: 0,
           color: "#94a3b8",
+          margin: 0,
           fontSize: "16px",
         }}
       >
@@ -36,8 +37,9 @@ export default function StatCard({
 
       <h1
         style={{
-          marginTop: "10px",
-          fontSize: "30px",
+          marginTop: "12px",
+          fontSize: "34px",
+          fontWeight: "700",
         }}
       >
         {value}
