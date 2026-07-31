@@ -1,17 +1,4 @@
-export default function Sidebar() {
-  const menus = [
-    "🏠 Dashboard",
-    "👥 Customers",
-    "📦 Products",
-    "📋 Inventory",
-    "💰 Sales",
-    "🧾 Invoice",
-    "💸 Expenses",
-    "📈 Reports",
-    "🤖 AI Assistant",
-    "⚙ Settings",
-  ];
-
+export default function Sidebar({ setPage }) {
   return (
     <div
       style={{
@@ -29,20 +16,61 @@ export default function Sidebar() {
         🚀 FlowPilot AI
       </h2>
 
-      {menus.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            padding: "14px",
-            marginBottom: "10px",
-            borderRadius: "10px",
-            cursor: "pointer",
-            background: "#1f2937",
-          }}
-        >
-          {item}
-        </div>
-      ))}
+      <div style={menuStyle} onClick={() => setPage("dashboard")}>
+        🏠 Dashboard
+      </div>
+
+      <div style={menuStyle} onClick={() => setPage("customers")}>
+        👥 Customers
+      </div>
+
+      <div style={menuStyle} onClick={() => setPage("addCustomer")}>
+        ➕ Add Customer
+      </div>
+
+      <div style={menuStyle} onClick={() => setPage("products")}>
+        📦 Products
+      </div>
+
+      <div style={menuStyle} onClick={() => setPage("addProduct")}>
+        ➕ Add Product
+      </div>
+
+      <div style={menuStyle}>
+        📋 Inventory
+      </div>
+
+      <div style={menuStyle}>
+        💰 Sales
+      </div>
+
+      <div style={menuStyle}>
+        🧾 Invoice
+      </div>
+
+      <div style={menuStyle}>
+        💸 Expenses
+      </div>
+
+      <div style={menuStyle}>
+        📈 Reports
+      </div>
+
+      <div style={menuStyle}>
+        🤖 AI Assistant
+      </div>
+
+      <div style={menuStyle}>
+        ⚙ Settings
+      </div>
     </div>
   );
 }
+
+const menuStyle = {
+  padding: "14px",
+  marginBottom: "10px",
+  borderRadius: "10px",
+  cursor: "pointer",
+  background: "#1f2937",
+};
