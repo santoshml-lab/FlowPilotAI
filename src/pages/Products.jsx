@@ -24,6 +24,26 @@ export default function Products() {
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  async function deleteProduct(id) {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this product?"
+  );
+
+  if (!confirmDelete) return;
+
+  const { error } = await supabase
+    .from("products")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("✅ Product Deleted Successfully");
+    loadProducts();
+  }
+  }
+
   return (
     <div
       style={{
