@@ -1,3 +1,6 @@
+import StatCard from "../components/StatCard";
+import SalesChart from "../components/SalesChart";
+
 export default function Dashboard() {
   return (
     <div
