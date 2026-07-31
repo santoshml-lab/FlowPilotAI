@@ -11,13 +11,30 @@ export default function Dashboard() {
         color: "white",
       }}
     >
-      <h1 style={{ fontSize: "34px", marginBottom: "10px" }}>
-        🚀 FlowPilot AI
-      </h1>
+      <h1
+  style={{
+    fontSize: "38px",
+    fontWeight: "700",
+    marginBottom: "8px",
+  }}
+>
+  Welcome Back 👋
+</h1>
 
-      <p style={{ color: "#94a3b8" }}>
-        Welcome back! Here's your business overview.
-      </p>
+<p
+  style={{
+    color: "#94a3b8",
+    fontSize: "18px",
+  }}
+>
+  Here's what's happening with your business today.
+</p>
+        
+      
+
+      
+        
+      
 
       <div
         style={{
