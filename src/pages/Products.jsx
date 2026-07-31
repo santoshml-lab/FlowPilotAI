@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadProducts();
@@ -20,61 +20,141 @@ export default function Products() {
     }
   }
 
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div style={{ padding: "30px" }}>
+    <div
+      style={{
+        padding: "30px",
+        background: "#0f172a",
+        minHeight: "100vh",
+        color: "white",
+      }}
+    >
       <h1>📦 Products</h1>
-      <input
-  type="text"
-  placeholder="🔍 Search Product..."
-  style={{
-    width: "300px",
-    padding: "10px",
-    borderRadius: "10px",
-    border: "1px solid #ccc",
-    marginTop: "15px",
-    marginBottom: "20px",
-  }}
-/>
-      <button
-  style={{
-    marginLeft: "15px",
-    padding: "10px 18px",
-    background: "#2563eb",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    cursor: "pointer",
-    fontWeight: "bold",
-  }}
->
-  ➕ Add Product
-</button>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin: "20px 0",
+          flexWrap: "wrap",
+          gap: "15px",
+        }}
+      >
+        <input
+          type="text"
+          placeholder="🔍 Search Product..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          style={{
+            width: "300px",
+            padding: "10px",
+            borderRadius: "10px",
+            border: "1px solid #ccc",
+          }}
+        />
+
+        <button
+          style={{
+            padding: "10px 18px",
+            background: "#2563eb",
+            color: "white",
+            border: "none",
+            borderRadius: "10px",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          ➕ Add Product
+        </button>
+      </div>
 
       <table
         style={{
           width: "100%",
-          marginTop: "20px",
           borderCollapse: "collapse",
+          background: "#1e293b",
+          borderRadius: "10px",
+          overflow: "hidden",
         }}
       >
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Stock</th>
+          <tr style={{ background: "#334155" }}>
+            <th style={thStyle}>Name</th>
+            <th style={thStyle}>Price</th>
+            <th style={thStyle}>Stock</th>
+            <th style={thStyle}>Status</th>
+            <th style={thStyle}>Action</th>
           </tr>
         </thead>
 
         <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>₹{product.price}</td>
-              <td>{product.stock}</td>
+          {filteredProducts.length === 0 ? (
+            <tr>
+              <td
+                colSpan="5"
+                style={{
+                  textAlign: "center",
+                  padding: "20px",
+                }}
+              >
+                No Products Found
+              </td>
             </tr>
-          ))}
+          ) : (
+            filteredProducts.map((product) => (
+              <tr key={product.id}>
+                <td style={tdStyle}>{product.name}</td>
+
+                <td style={tdStyle}>₹{product.price}</td>
+
+                <td style={tdStyle}>{product.stock}</td>
+
+                <td style={tdStyle}>
+                  {product.stock > 10
+                    ? "🟢 In Stock"
+                    : product.stock > 0
+                    ? "🟡 Low Stock"
+                    : "🔴 Out of Stock"}
+                </td>
+
+                <td style={tdStyle}>
+                  <button
+                    style={{
+                      marginRight: "10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ✏️
+                  </button>
+
+                  <button
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    🗑️
+                  </button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
   );
 }
+
+const thStyle = {
+  padding: "15px",
+  textAlign: "left",
+};
+
+const tdStyle = {
+  padding: "15px",
+  borderBottom: "1px solid #334155",
+};
