@@ -153,12 +153,19 @@ export default function Products() {
                   </button>
 
                   <button
-                    style={{
-                      cursor: "pointer",
-                    }}
-                  >
-                    🗑️
-                  </button>
+  onClick={() => deleteProduct(product.id)}
+  style={{
+    cursor: "pointer",
+  }}
+>
+  🗑️
+</button>
+                    
+                      
+                    
+                  
+                    
+                  
                 </td>
               </tr>
             ))
