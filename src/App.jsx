@@ -1,37 +1,26 @@
-import React from "react";
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   return (
     <div
       style={{
-        minHeight: "100vh",
-        background: "#0f172a",
-        color: "white",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        fontFamily: "Arial, sans-serif",
+        background: "#0f172a",
       }}
     >
-      <h1>🚀 FlowPilot AI</h1>
+      <Sidebar />
 
-      <p>Smart Business Management Powered by AI</p>
-
-      <button
+      <div
         style={{
-          marginTop: "20px",
-          padding: "12px 25px",
-          border: "none",
-          borderRadius: "8px",
-          background: "#2563eb",
-          color: "white",
-          cursor: "pointer",
-          fontSize: "16px",
+          marginLeft: "260px",
+          width: "100%",
         }}
       >
-        Get Started
-      </button>
+        <Navbar />
+        <Dashboard />
+      </div>
     </div>
   );
 }
