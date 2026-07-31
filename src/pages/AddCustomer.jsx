@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function AddCustomer() {
   const [form, setForm] = useState({
@@ -16,10 +17,30 @@ export default function AddCustomer() {
     });
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert("Customer Save Button Working!");
+  async function handleSubmit(e) {
+  e.preventDefault();
+
+  const { error } = await supabase
+    .from("customers")
+    .insert([form]);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("✅ Customer Added Successfully");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      address: "",
+    });
   }
+  }
+    
+    
+
 
   return (
     <div
@@ -42,6 +63,7 @@ export default function AddCustomer() {
         <input
           name="name"
           placeholder="Customer Name"
+          value={form.name}
           onChange={handleChange}
           style={inputStyle}
         />
@@ -49,6 +71,7 @@ export default function AddCustomer() {
         <input
           name="email"
           placeholder="Email"
+          value={form.email}
           onChange={handleChange}
           style={inputStyle}
         />
@@ -56,6 +79,7 @@ export default function AddCustomer() {
         <input
           name="phone"
           placeholder="Phone"
+          value={form.phone}
           onChange={handleChange}
           style={inputStyle}
         />
@@ -63,6 +87,7 @@ export default function AddCustomer() {
         <input
           name="company"
           placeholder="Company"
+          value={form.company}
           onChange={handleChange}
           style={inputStyle}
         />
@@ -70,6 +95,7 @@ export default function AddCustomer() {
         <textarea
           name="address"
           placeholder="Address"
+          value={form.address}
           onChange={handleChange}
           style={{
             ...inputStyle,
