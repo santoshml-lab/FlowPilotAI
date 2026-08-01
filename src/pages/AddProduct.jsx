@@ -51,12 +51,18 @@ export default function AddProduct({
       ({ error } = await supabase
         .from("products")
         .update({
-          name,
-          category,
-          price,
-          stock,
-          image,
-        })
+  name,
+  category,
+  price,
+  stock,
+  image: imageUrl,
+})
+          
+          
+          
+          
+          
+        
         .eq("id", editingProduct.id));
     } else {
       ({ error } = await supabase
@@ -67,7 +73,7 @@ export default function AddProduct({
             category,
             price,
             stock,
-            image,
+            image: imageUrl,
           },
         ]));
     }
