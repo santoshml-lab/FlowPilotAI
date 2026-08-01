@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
+import BasicInfo from "../components/product/BasicInfo";
+import Pricing from "../components/product/Pricing";
+import Inventory from "../components/product/Inventory";
+import Description from "../components/product/Description";
+import ProductImage from "../components/product/ProductImage";
+import ProductActions from "../components/product/ProductActions";
 
 export default function AddProduct({
   editingProduct,
@@ -137,19 +143,21 @@ status,
       <h1>
         {editingProduct ? "✏️ Edit Product" : "📦 Add Product"}
       </h1>
-
-      <input
-        placeholder="Product Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <br /><br />
-
-      <input
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
+      <BasicInfo
+  name={name}
+  setName={setName}
+  sku={sku}
+  setSku={setSku}
+  barcode={barcode}
+  setBarcode={setBarcode}
+  category={category}
+  setCategory={setCategory}
+  brand={brand}
+  setBrand={setBrand}
+  supplier={supplier}
+  setSupplier={setSupplier}
+/> 
+      
       <br /><br />
 
       <input
