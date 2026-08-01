@@ -21,7 +21,7 @@ export default function App() {
         return <AddCustomer />;
 
       case "products":
-        return <Products />;
+        return <Products setPage={setPage} />;
 
       case "addProduct":
         return <AddProduct />;
