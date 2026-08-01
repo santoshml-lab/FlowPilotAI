@@ -10,7 +10,7 @@ export default function AddProduct({
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (editingProduct) {
@@ -21,6 +21,27 @@ export default function AddProduct({
       setImage(editingProduct.image || "");
     }
   }, [editingProduct]);
+
+  async function uploadImage(file) {
+  if (!file) return "";
+
+  const fileName = `${Date.now()}-${file.name}`;
+
+  const { error } = await supabase.storage
+    .from("products")
+    .upload(fileName, file);
+
+  if (error) {
+    alert(error.message);
+    return "";
+  }
+
+  const { data } = supabase.storage
+    .from("products")
+    .getPublicUrl(fileName);
+
+  return data.publicUrl;
+  }
 
   async function saveProduct() {
     let error;
@@ -109,10 +130,14 @@ export default function AddProduct({
       <br /><br />
 
       <input
-        placeholder="Image URL"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-      />
+  type="file"
+  accept="image/*"
+  onChange={(e) => setImage(e.target.files[0])}
+/>
+        
+        
+        
+      
       <br /><br />
 
       <button onClick={saveProduct}>
