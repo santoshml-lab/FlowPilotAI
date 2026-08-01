@@ -4,12 +4,12 @@ import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
-import { useNavigate } from "react-router-dom";
+
 export default function Products({ setPage }) {
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     loadProducts();
