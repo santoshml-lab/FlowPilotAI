@@ -11,6 +11,7 @@ import AddProduct from "./pages/AddProduct";
 
 export default function App() {
   const [page, setPage] = useState("dashboard");
+  const [editingProduct, setEditingProduct] = useState(null);
 
   function renderPage() {
     switch (page) {
@@ -21,10 +22,23 @@ export default function App() {
         return <AddCustomer />;
 
       case "products":
-        return <Products setPage={setPage} />;
+  return (
+    <Products
+      setPage={setPage}
+      setEditingProduct={setEditingProduct}
+    />
+  );
+        
 
       case "addProduct":
-        return <AddProduct />;
+  return (
+    <AddProduct
+      editingProduct={editingProduct}
+      setEditingProduct={setEditingProduct}
+      setPage={setPage}
+    />
+  );
+        
 
       default:
         return <Dashboard />;
