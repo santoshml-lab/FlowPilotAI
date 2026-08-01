@@ -45,6 +45,7 @@ export default function AddProduct({
 
   async function saveProduct() {
     let error;
+    const imageUrl = await uploadImage(image);
 
     if (editingProduct) {
       ({ error } = await supabase
