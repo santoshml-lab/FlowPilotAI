@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
+import Card from "../components/ui/Card";
+import Table from "../components/ui/Table";
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -65,33 +69,26 @@ export default function Products() {
           gap: "15px",
         }}
       >
-        <input
-          type="text"
-          placeholder="🔍 Search Product..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={{
-            width: "300px",
-            padding: "10px",
-            borderRadius: "10px",
-            border: "1px solid #ccc",
-          }}
-        />
-
-        <button
-          style={{
-            padding: "10px 18px",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "10px",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          ➕ Add Product
-        </button>
+        
+         <Input
+  placeholder="🔍 Search Product..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+/> 
+          
+          
+          
+          
+       <Button>
+  ➕ Add Product
+</Button>
+        
+          
+            
+            
+            
       </div>
+      <card>
 
       <table
         style={{
@@ -172,6 +169,7 @@ export default function Products() {
           )}
         </tbody>
       </table>
+      </card>
     </div>
   );
 }
