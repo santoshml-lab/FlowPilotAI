@@ -95,7 +95,7 @@ export default function AddProduct({
     setCategory("");
     setPrice("");
     setStock("");
-    setImage("");
+    setImage(null);
 
     setPage("products");
   }
