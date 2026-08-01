@@ -158,22 +158,31 @@ status,
   setSupplier={setSupplier}
 /> 
       
-      <br /><br />
+      <Pricing
+  costPrice={costPrice}
+  setCostPrice={setCostPrice}
+  price={price}
+  setPrice={setPrice}
+/>
 
-      <input
-        type="number"
-        placeholder="Price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-      <br /><br />
+      <Inventory
+  stock={stock}
+  setStock={setStock}
+  lowStockLimit={lowStockLimit}
+  setLowStockLimit={setLowStockLimit}
+  status={status}
+  setStatus={setStatus}
+/>
 
-      <input
-        type="number"
-        placeholder="Stock"
-        value={stock}
-        onChange={(e) => setStock(e.target.value)}
-      />
+      
+        
+        
+        
+      
+      
+        
+        
+      
       <br /><br />
 
       <input
