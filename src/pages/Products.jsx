@@ -5,8 +5,8 @@ import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
 import { useNavigate } from "react-router-dom";
+export default function Products({ setPage }) {
 
-export default function Products() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -80,9 +80,11 @@ export default function Products() {
           
           
           
-        <Button onClick={() => navigate("/add-product")}>
+        <Button onClick={() => setPage("addProduct")}>
   ➕ Add Product
-</Button>  
+</Button>
+  
+
        
   
 
