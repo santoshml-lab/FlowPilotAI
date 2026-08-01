@@ -80,19 +80,13 @@ export default function Products({ setPage }) {
           
           
           
-        <button
-  onClick={() => alert("Working")}
-  style={{
-    padding: "12px 20px",
-    background: "red",
-    color: "white",
-    border: "none",
-    borderRadius: "10px",
-    cursor: "pointer",
-  }}
->
-  Test Button
-</button>
+        <Button onClick={() => setPage("addProduct")}>
+  ➕ Add Product
+</Button>
+  
+  
+    
+    
   
     
   
