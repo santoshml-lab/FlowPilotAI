@@ -5,7 +5,10 @@ import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
 
-export default function Products({ setPage }) {
+export default function Products({
+  setPage,
+  setEditingProduct,
+}) {
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
