@@ -1,40 +1,82 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 
-export default function AddProduct() {
+export default function AddProduct({
+  editingProduct,
+  setEditingProduct,
+  setPage,
+}) {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [image, setImage] = useState("");
 
+  useEffect(() => {
+    if (editingProduct) {
+      setName(editingProduct.name || "");
+      setCategory(editingProduct.category || "");
+      setPrice(editingProduct.price || "");
+      setStock(editingProduct.stock || "");
+      setImage(editingProduct.image || "");
+    }
+  }, [editingProduct]);
+
   async function saveProduct() {
-    const { error } = await supabase.from("products").insert([
-      {
-        name,
-        category,
-        price,
-        stock,
-        image,
-      },
-    ]);
+    let error;
+
+    if (editingProduct) {
+      ({ error } = await supabase
+        .from("products")
+        .update({
+          name,
+          category,
+          price,
+          stock,
+          image,
+        })
+        .eq("id", editingProduct.id));
+    } else {
+      ({ error } = await supabase
+        .from("products")
+        .insert([
+          {
+            name,
+            category,
+            price,
+            stock,
+            image,
+          },
+        ]));
+    }
 
     if (error) {
-      alert("❌ Error adding product");
-    } else {
-      alert("✅ Product Added Successfully");
-      setName("");
-      setCategory("");
-      setPrice("");
-      setStock("");
-      setImage("");
+      alert(error.message);
+      return;
     }
+
+    alert(
+      editingProduct
+        ? "✅ Product Updated Successfully"
+        : "✅ Product Added Successfully"
+    );
+
+    setEditingProduct(null);
+
+    setName("");
+    setCategory("");
+    setPrice("");
+    setStock("");
+    setImage("");
+
+    setPage("products");
   }
 
   return (
     <div style={{ padding: "30px" }}>
-      <h1>📦 Add Product</h1>
+      <h1>
+        {editingProduct ? "✏️ Edit Product" : "📦 Add Product"}
+      </h1>
 
       <input
         placeholder="Product Name"
@@ -74,7 +116,7 @@ export default function AddProduct() {
       <br /><br />
 
       <button onClick={saveProduct}>
-        ➕ Save Product
+        {editingProduct ? "💾 Update Product" : "➕ Save Product"}
       </button>
     </div>
   );
