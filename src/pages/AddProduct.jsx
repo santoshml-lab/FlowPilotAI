@@ -11,6 +11,14 @@ export default function AddProduct({
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [image, setImage] = useState(null);
+  const [sku, setSku] = useState("");
+  const [brand, setBrand] = useState("");
+  const [supplier, setSupplier] = useState("");
+  const [costPrice, setCostPrice] = useState("");
+ const [lowStockLimit, setLowStockLimit] = useState(5);
+const [barcode, setBarcode] = useState("");
+const [description, setDescription] = useState("");
+const [status, setStatus] = useState("Active");
 
   useEffect(() => {
     if (editingProduct) {
@@ -19,6 +27,14 @@ export default function AddProduct({
       setPrice(editingProduct.price || "");
       setStock(editingProduct.stock || "");
       setImage(editingProduct.image || "");
+      setSku(editingProduct.sku || "");
+setBrand(editingProduct.brand || "");
+setSupplier(editingProduct.supplier || "");
+setCostPrice(editingProduct.cost_price || "");
+setLowStockLimit(editingProduct.low_stock_limit || 5);
+setBarcode(editingProduct.barcode || "");
+setDescription(editingProduct.description || "");
+setStatus(editingProduct.status || "Active");
     }
   }, [editingProduct]);
 
@@ -56,6 +72,14 @@ export default function AddProduct({
   price,
   stock,
   image: imageUrl,
+  sku,
+brand,
+supplier,
+cost_price: costPrice,
+low_stock_limit: lowStockLimit,
+barcode,
+description,
+status,        
 })
           
           
@@ -74,6 +98,14 @@ export default function AddProduct({
             price,
             stock,
             image: imageUrl,
+            sku,
+brand,
+supplier,
+cost_price: costPrice,
+low_stock_limit: lowStockLimit,
+barcode,
+description,
+status,
           },
         ]));
     }
