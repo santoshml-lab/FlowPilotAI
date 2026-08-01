@@ -127,7 +127,47 @@ export default function Products({
           ) : (
             filteredProducts.map((product) => (
               <tr key={product.id}>
-                <td style={tdStyle}>{product.name}</td>
+                <td style={tdStyle}>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    }}
+  >
+    <img
+      src={product.image}
+      alt={product.name}
+      style={{
+        width: "55px",
+        height: "55px",
+        borderRadius: "10px",
+        objectFit: "cover",
+        border: "2px solid #334155",
+      }}
+    />
+
+    <div>
+      <div
+        style={{
+          fontWeight: "600",
+          color: "white",
+        }}
+      >
+        {product.name}
+      </div>
+
+      <div
+        style={{
+          color: "#94a3b8",
+          fontSize: "13px",
+        }}
+      >
+        {product.category}
+      </div>
+    </div>
+  </div>
+</td>
 
                 <td style={tdStyle}>₹{product.price}</td>
 
