@@ -86,33 +86,7 @@ export default function Products({
         <Button onClick={() => setPage("addProduct")}>
   ➕ Add Product
 </Button>
-
-        <button
-  onClick={() => {
-    setEditingProduct(product);
-    setPage("addProduct");
-  }}
-  style={{
-    marginRight: "10px",
-    cursor: "pointer",
-  }}
->
-  ✏️
-</button>
-  
-  
-    
-    
-  
-    
-  
-  
-
-       
-  
-
-          
-            
+        
             
             
       </div>
@@ -169,13 +143,25 @@ export default function Products({
 
                 <td style={tdStyle}>
                   <button
-                    style={{
-                      marginRight: "10px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    ✏️
-                  </button>
+  onClick={() => {
+    setEditingProduct(product);
+    setPage("addProduct");
+  }}
+  style={{
+    marginRight: "10px",
+    cursor: "pointer",
+  }}
+>
+  ✏️
+</button>
+                
+                    
+                      
+                      
+                    
+                  
+                    
+                  
 
                   <button
   onClick={() => deleteProduct(product.id)}
