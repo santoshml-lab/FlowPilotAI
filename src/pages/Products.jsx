@@ -86,6 +86,19 @@ export default function Products({
         <Button onClick={() => setPage("addProduct")}>
   ➕ Add Product
 </Button>
+
+        <button
+  onClick={() => {
+    setEditingProduct(product);
+    setPage("addProduct");
+  }}
+  style={{
+    marginRight: "10px",
+    cursor: "pointer",
+  }}
+>
+  ✏️
+</button>
   
   
     
