@@ -93,7 +93,7 @@ export default function Products({ setPage }) {
             
             
       </div>
-      <card>
+      <Card>
 
       <table
         style={{
@@ -174,7 +174,7 @@ export default function Products({ setPage }) {
           )}
         </tbody>
       </table>
-      </card>
+      </Card>
     </div>
   );
 }
