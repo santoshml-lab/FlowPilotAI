@@ -80,9 +80,15 @@ export default function Products({ setPage }) {
           
           
           
-        <Button onClick={() => setPage("addProduct")}>
+        <Button
+  onClick={() => {
+    alert("Button Clicked");
+    setPage("addProduct");
+  }}
+>
   ➕ Add Product
 </Button>
+  
   
 
        
