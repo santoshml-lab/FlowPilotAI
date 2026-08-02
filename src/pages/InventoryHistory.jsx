@@ -1,6 +1,21 @@
 import Card from "../components/ui/Card";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function InventoryHistory() {
+  const [history, setHistory] = useState([]);
+  useEffect(() => {
+  loadHistory();
+}, []);
+
+async function loadHistory() {
+  const { data } = await supabase
+    .from("inventory_history")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  setHistory(data || []);
+}
   return (
     <div
       style={{
@@ -38,13 +53,42 @@ export default function InventoryHistory() {
           </thead>
 
           <tbody>
-            <tr>
-              <td style={tdStyle}>No History</td>
-              <td style={tdStyle}>-</td>
-              <td style={tdStyle}>-</td>
-              <td style={tdStyle}>-</td>
-              <td style={tdStyle}>-</td>
-            </tr>
+            {history.length === 0 ? (
+  <tr>
+    <td style={tdStyle} colSpan="5">
+      No History Found
+    </td>
+  </tr>
+) : (
+  history.map((item) => (
+    <tr key={item.id}>
+      <td style={tdStyle}>
+        {new Date(item.created_at).toLocaleString()}
+      </td>
+
+      <td style={tdStyle}>
+        {item.product_name}
+      </td>
+
+      <td style={tdStyle}>
+        {item.type}
+      </td>
+
+      <td style={tdStyle}>
+        {item.quantity}
+      </td>
+
+      <td style={tdStyle}>
+        {item.stock_after}
+      </td>
+    </tr>
+  ))
+)}
+                            
+              
+              
+              
+            
           </tbody>
         </table>
       </Card>
