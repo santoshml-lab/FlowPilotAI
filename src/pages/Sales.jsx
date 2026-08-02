@@ -1,6 +1,32 @@
 import Card from "../components/ui/Card";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
+import Button from "../components/ui/Button";
 
 export default function Sales() {
+  const [customers, setCustomers] = useState([]);
+const [products, setProducts] = useState([]);
+
+const [selectedCustomer, setSelectedCustomer] = useState("");
+const [selectedProduct, setSelectedProduct] = useState("");
+const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+  loadData();
+}, []);
+
+async function loadData() {
+  const { data: customerData } = await supabase
+    .from("customers")
+    .select("*");
+
+  const { data: productData } = await supabase
+    .from("products")
+    .select("*");
+
+  setCustomers(customerData || []);
+  setProducts(productData || []);
+}
   return (
     <div
       style={{
