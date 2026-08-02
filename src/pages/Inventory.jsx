@@ -1,6 +1,9 @@
 import Card from "../components/ui/Card";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Inventory() {
+  const [products, setProducts] = useState([]);
   const thStyle = {
   padding: "15px",
   textAlign: "left",
@@ -10,6 +13,19 @@ const tdStyle = {
   padding: "15px",
   borderBottom: "1px solid #334155",
 };
+useEffect(() => {
+  loadProducts();
+}, []);
+
+async function loadProducts() {
+  const { data } = await supabase
+    .from("products")
+    .select("*")
+    .order("id", { ascending: false });
+
+  setProducts(data || []);
+}
+  
   return (
     <div
       style={{
@@ -84,15 +100,37 @@ const tdStyle = {
     </thead>
 
     <tbody>
-      <tr>
-        <td style={tdStyle}>No Products Yet</td>
-        <td style={tdStyle}>0</td>
-        <td style={tdStyle}>0</td>
-        <td style={tdStyle}>—</td>
-        <td style={tdStyle}>
-          <button>📥 Stock In</button>
-        </td>
-      </tr>
+      {products.map((product) => (
+  <tr key={product.id}>
+    <td style={tdStyle}>{product.name}</td>
+
+    <td style={tdStyle}>{product.stock}</td>
+
+    <td style={tdStyle}>
+      {product.low_stock_limit}
+    </td>
+
+    <td style={tdStyle}>
+      {product.stock === 0
+        ? "🔴 Out Of Stock"
+        : product.stock <= product.low_stock_limit
+        ? "🟡 Low Stock"
+        : "🟢 In Stock"}
+    </td>
+
+    <td style={tdStyle}>
+      <button>📥 Stock In</button>
+    </td>
+  </tr>
+))}
+        
+        
+        
+        
+        
+          
+        
+      
     </tbody>
   </table>
 </Card>
