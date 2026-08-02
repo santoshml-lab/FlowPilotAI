@@ -6,6 +6,7 @@ import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
 import ProductStats from "../components/product/ProductStats";
 import ViewProduct from "../components/product/ViewProduct";
+import ProductCharts from "../components/product/ProductCharts";
 
 export default function Products({
   setPage,
@@ -164,6 +165,7 @@ const totalPages = Math.ceil(
     >
       <h1>📦 Products</h1>
       <ProductStats products={products} />
+      <ProductCharts />
 
       <div
         style={{
