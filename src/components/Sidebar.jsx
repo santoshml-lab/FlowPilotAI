@@ -47,9 +47,14 @@ export default function Sidebar({ setPage }) {
         ➕ Add Product
       </div>
 
-      <div style={menuStyle}>
-        📋 Inventory
-      </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("inventory")}
+>
+  📋 Inventory
+</div>
+        
+      
 
       <div style={menuStyle}>
         💰 Sales
