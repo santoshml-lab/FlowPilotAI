@@ -1,6 +1,15 @@
 import Card from "../components/ui/Card";
 
 export default function Inventory() {
+  const thStyle = {
+  padding: "15px",
+  textAlign: "left",
+};
+
+const tdStyle = {
+  padding: "15px",
+  borderBottom: "1px solid #334155",
+};
   return (
     <div
       style={{
@@ -39,7 +48,9 @@ export default function Inventory() {
           <h3>🔴 Out Of Stock</h3>
           <h1>0</h1>
         </Card>
-        <Card
+        
+      </div>
+      <Card
   style={{
     marginTop: "30px",
   }}
@@ -85,7 +96,6 @@ export default function Inventory() {
     </tbody>
   </table>
 </Card>
-      </div>
     </div>
   );
 }
