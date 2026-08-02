@@ -185,11 +185,18 @@ status,
            
         
       
-      <br /><br />
+      <ProductActions
+  editingProduct={editingProduct}
+  onSave={saveProduct}
+  onCancel={() => {
+    setEditingProduct(null);
+    setPage("products");
+  }}
+/>
 
-      <button onClick={saveProduct}>
-        {editingProduct ? "💾 Update Product" : "➕ Save Product"}
-      </button>
+      
+        
+      
     </div>
   );
 }
