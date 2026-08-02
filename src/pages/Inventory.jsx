@@ -39,6 +39,52 @@ export default function Inventory() {
           <h3>🔴 Out Of Stock</h3>
           <h1>0</h1>
         </Card>
+        <Card
+  style={{
+    marginTop: "30px",
+  }}
+>
+  <h2
+    style={{
+      marginBottom: "20px",
+    }}
+  >
+    📋 Inventory Status
+  </h2>
+
+  <table
+    style={{
+      width: "100%",
+      borderCollapse: "collapse",
+    }}
+  >
+    <thead>
+      <tr
+        style={{
+          background: "#334155",
+        }}
+      >
+        <th style={thStyle}>Product</th>
+        <th style={thStyle}>Current Stock</th>
+        <th style={thStyle}>Low Stock Limit</th>
+        <th style={thStyle}>Status</th>
+        <th style={thStyle}>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={tdStyle}>No Products Yet</td>
+        <td style={tdStyle}>0</td>
+        <td style={tdStyle}>0</td>
+        <td style={tdStyle}>—</td>
+        <td style={tdStyle}>
+          <button>📥 Stock In</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</Card>
       </div>
     </div>
   );
