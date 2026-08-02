@@ -14,6 +14,7 @@ export default function Products({
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("latest");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [brandFilter, setBrandFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -52,6 +53,24 @@ const brands = [
     (brandFilter === "All" || product.brand === brandFilter) &&
     (statusFilter === "All" || product.status === statusFilter)
   );
+});
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+  switch (sortBy) {
+    case "name":
+      return a.name.localeCompare(b.name);
+
+    case "priceLow":
+      return Number(a.price) - Number(b.price);
+
+    case "priceHigh":
+      return Number(b.price) - Number(a.price);
+
+    case "stock":
+      return Number(b.stock) - Number(a.stock);
+
+    default:
+      return b.id - a.id;
+  }
 });
   
     
@@ -184,6 +203,16 @@ const brands = [
     <option>Archived</option>
   </select>
 </div>
+        <select
+  value={sortBy}
+  onChange={(e) => setSortBy(e.target.value)}
+>
+  <option value="latest">Latest</option>
+  <option value="name">Product Name</option>
+  <option value="priceLow">Price: Low to High</option>
+  <option value="priceHigh">Price: High to Low</option>
+  <option value="stock">Stock</option>
+</select>
           
           
           
@@ -235,7 +264,7 @@ const brands = [
               </td>
             </tr>
           ) : (
-            filteredProducts.map((product) => (
+            sortedProducts.map((product) => (
               <tr key={product.id}>
                 <td style={tdStyle}>
   <img
