@@ -93,9 +93,14 @@ export default function Sidebar({ setPage }) {
         
       
 
-      <div style={menuStyle}>
-        🤖 AI Assistant
-      </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("ai")}
+>
+  🤖 AI Assistant
+</div>
+        
+      
 
       <div style={menuStyle}>
         ⚙ Settings
