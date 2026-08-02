@@ -32,9 +32,13 @@ export default function Products({
     }
   }
 
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = products
+  .filter((product) => product.status !== "Archived")
+  .filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
+    
+  
 
   async function deleteProduct(id) {
   const confirmDelete = window.confirm(
@@ -80,6 +84,21 @@ export default function Products({
     alert(error.message);
   } else {
     alert("✅ Product Duplicated Successfully");
+    loadProducts();
+  }
+  }
+  async function archiveProduct(id) {
+  const { error } = await supabase
+    .from("products")
+    .update({
+      status: "Archived",
+    })
+    .eq("id", id);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("📦 Product Archived Successfully");
     loadProducts();
   }
   }
@@ -212,6 +231,15 @@ export default function Products({
   }}
 >
   📄
+</button>
+                  <button
+  onClick={() => archiveProduct(product.id)}
+  style={{
+    marginRight: "10px",
+    cursor: "pointer",
+  }}
+>
+  📦
 </button>
                   <button
   onClick={() => {
