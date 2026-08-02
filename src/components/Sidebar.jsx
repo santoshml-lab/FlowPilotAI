@@ -71,9 +71,14 @@ export default function Sidebar({ setPage }) {
         
       
 
-      <div style={menuStyle}>
-        🧾 Invoice
-      </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("invoice")}
+>
+  🧾 Invoice
+</div>
+        
+      
 
       <div style={menuStyle}>
         💸 Expenses
