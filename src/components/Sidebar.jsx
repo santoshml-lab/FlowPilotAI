@@ -53,6 +53,12 @@ export default function Sidebar({ setPage }) {
 >
   📋 Inventory
 </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("inventoryHistory")}
+>
+  📜 Inventory History
+</div>
         
       
 
