@@ -15,6 +15,8 @@ export default function Products({
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [sortBy, setSortBy] = useState("latest");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10;
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [brandFilter, setBrandFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
@@ -72,6 +74,18 @@ const brands = [
       return b.id - a.id;
   }
 });
+  const indexOfLastProduct = currentPage * productsPerPage;
+const indexOfFirstProduct =
+  indexOfLastProduct - productsPerPage;
+
+const currentProducts = sortedProducts.slice(
+  indexOfFirstProduct,
+  indexOfLastProduct
+);
+
+const totalPages = Math.ceil(
+  sortedProducts.length / productsPerPage
+);
   
     
   
@@ -264,7 +278,7 @@ const brands = [
               </td>
             </tr>
           ) : (
-            sortedProducts.map((product) => (
+            currentProducts.map((product) => (
               <tr key={product.id}>
                 <td style={tdStyle}>
   <img
@@ -364,6 +378,41 @@ const brands = [
           )}
         </tbody>
       </table>
+        <div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginTop: "20px",
+  }}
+>
+  <button
+    disabled={currentPage === 1}
+    onClick={() =>
+      setCurrentPage(currentPage - 1)
+    }
+  >
+    ◀ Prev
+  </button>
+
+  <span
+    style={{
+      color: "white",
+      padding: "8px 15px",
+    }}
+  >
+    {currentPage} / {totalPages}
+  </span>
+
+  <button
+    disabled={currentPage === totalPages}
+    onClick={() =>
+      setCurrentPage(currentPage + 1)
+    }
+  >
+    Next ▶
+  </button>
+</div>
       </Card>
       <ViewProduct
   product={selectedProduct}
