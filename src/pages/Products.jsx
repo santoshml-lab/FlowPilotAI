@@ -103,12 +103,18 @@ export default function Products({
       >
         <thead>
           <tr style={{ background: "#334155" }}>
-            <th style={thStyle}>Name</th>
-            <th style={thStyle}>Price</th>
-            <th style={thStyle}>Stock</th>
-            <th style={thStyle}>Status</th>
-            <th style={thStyle}>Action</th>
-          </tr>
+  <th style={thStyle}>Image</th>
+  <th style={thStyle}>SKU</th>
+  <th style={thStyle}>Product</th>
+  <th style={thStyle}>Brand</th>
+  <th style={thStyle}>Category</th>
+  <th style={thStyle}>Price</th>
+  <th style={thStyle}>Stock</th>
+  <th style={thStyle}>Status</th>
+  <th style={thStyle}>Action</th>
+</tr>
+                         
+          
         </thead>
 
         <tbody>
