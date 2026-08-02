@@ -1,6 +1,65 @@
 import Card from "../components/ui/Card";
+import { useState } from "react";
 
 export default function AIAssistant() {
+  const API_URL = "https://salespilot-l1d3.onrender.com/chat";
+
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [messages, setMessages] = useState([
+    {
+      role: "assistant",
+      text: "👋 Hello! I am FlowPilot AI. Ask me anything about your business.",
+    },
+  ]);
+
+  async function sendMessage() {
+    if (!prompt.trim()) return;
+
+    const userMessage = {
+      role: "user",
+      text: prompt,
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setLoading(true);
+
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: prompt,
+        }),
+      });
+
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: data.response,
+        },
+      ]);
+
+      setPrompt("");
+    } catch (err) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: "❌ Server Error",
+        },
+      ]);
+    }
+
+    setLoading(false);
+  }
+
   return (
     <div
       style={{
@@ -30,11 +89,22 @@ export default function AIAssistant() {
             marginTop: "20px",
           }}
         >
-          <p style={{ color: "#94a3b8" }}>
-            👋 Hello! I am FlowPilot AI.
-            <br />
-            Ask me anything about your business.
-          </p>
+          {messages.map((msg, index) => (
+            <div
+              key={index}
+              style={{
+                marginBottom: "15px",
+              }}
+            >
+              <b>
+                {msg.role === "user" ? "🧑 You" : "🤖 AI"}
+              </b>
+
+              <p>{msg.text}</p>
+            </div>
+          ))}
+
+          {loading && <p>🤖 Thinking...</p>}
         </div>
 
         <div
@@ -46,6 +116,11 @@ export default function AIAssistant() {
         >
           <input
             type="text"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") sendMessage();
+            }}
             placeholder="Ask FlowPilot AI..."
             style={{
               flex: 1,
@@ -54,7 +129,7 @@ export default function AIAssistant() {
             }}
           />
 
-          <button>
+          <button onClick={sendMessage}>
             🚀 Send
           </button>
         </div>
