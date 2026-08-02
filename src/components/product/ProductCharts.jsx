@@ -153,8 +153,12 @@ const categoryList = Object.entries(categories);
       width: "170px",
       height: "170px",
       borderRadius: "50%",
-      background:
-        "conic-gradient(#22c55e 0% 60%, #f59e0b 60% 85%, #ef4444 85% 100%)",
+      background: `conic-gradient(
+#22c55e 0% ${(activeProducts / totalProducts) * 100}%,
+#f59e0b ${(activeProducts / totalProducts) * 100}% ${((activeProducts + lowStock) / totalProducts) * 100}%,
+#ef4444 ${((activeProducts + lowStock) / totalProducts) * 100}% 100%
+)`,
+        
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -187,9 +191,20 @@ const categoryList = Object.entries(categories);
       fontSize: "14px",
     }}
   >
-    <span>🟢 In Stock</span>
-    <span>🟡 Low Stock</span>
-    <span>🔴 Out Of Stock</span>
+    <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "8px",
+    fontSize: "14px",
+  }}
+>
+  <span>🟢 In Stock : {activeProducts}</span>
+  <span>🟡 Low Stock : {lowStock}</span>
+  <span>🔴 Out Of Stock : {outOfStock}</span>
+</div>
+    
+    
   </div>
 </div>
         </div>
