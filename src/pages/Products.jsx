@@ -14,6 +14,9 @@ export default function Products({
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [brandFilter, setBrandFilter] = useState("All");
+  const [statusFilter, setStatusFilter] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState(null);
   
 
@@ -31,12 +34,26 @@ export default function Products({
       setProducts(data || []);
     }
   }
+  const categories = [
+  "All",
+  ...new Set(products.map((p) => p.category)),
+];
 
-  const filteredProducts = products
-  .filter((product) => product.status !== "Archived")
-  .filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
+const brands = [
+  "All",
+  ...new Set(products.map((p) => p.brand)),
+];
+
+  const filteredProducts = products.filter((product) => {
+  return (
+    product.status !== "Archived" &&
+    product.name.toLowerCase().includes(search.toLowerCase()) &&
+    (categoryFilter === "All" || product.category === categoryFilter) &&
+    (brandFilter === "All" || product.brand === brandFilter) &&
+    (statusFilter === "All" || product.status === statusFilter)
   );
+});
+  
     
   
 
@@ -131,6 +148,42 @@ export default function Products({
   value={search}
   onChange={(e) => setSearch(e.target.value)}
 /> 
+        <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    marginTop: "15px",
+    flexWrap: "wrap",
+  }}
+>
+  <select
+    value={categoryFilter}
+    onChange={(e) => setCategoryFilter(e.target.value)}
+  >
+    {categories.map((category) => (
+      <option key={category}>{category}</option>
+    ))}
+  </select>
+
+  <select
+    value={brandFilter}
+    onChange={(e) => setBrandFilter(e.target.value)}
+  >
+    {brands.map((brand) => (
+      <option key={brand}>{brand}</option>
+    ))}
+  </select>
+
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option>All</option>
+    <option>Active</option>
+    <option>Inactive</option>
+    <option>Archived</option>
+  </select>
+</div>
           
           
           
