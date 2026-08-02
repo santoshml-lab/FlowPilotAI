@@ -48,6 +48,20 @@ async function loadProducts() {
   if (error) {
     alert(error.message);
   } else {
+    await supabase
+  .from("inventory_history")
+  .insert([
+    {
+      product_id: selectedProduct.id,
+      product_name: selectedProduct.name,
+      type:
+        popupType === "in"
+          ? "Stock In"
+          : "Stock Out",
+      quantity: Number(quantity),
+      stock_after: newStock,
+    },
+  ]);
     alert("✅ Stock Updated Successfully");
 
     setSelectedProduct(null);
