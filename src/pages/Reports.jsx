@@ -8,6 +8,7 @@ export default function Reports() {
   const [sales, setSales] = useState(0);
   const [stock, setStock] = useState(0);
   const [customers, setCustomers] = useState(0);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     loadReports();
@@ -41,6 +42,7 @@ export default function Reports() {
     );
 
     setStock(totalStock);
+    setProducts(productData || []);
 
     setCustomers(customerData?.length || 0);
   }
@@ -86,7 +88,7 @@ export default function Reports() {
       </div>
 
       <div style={{ marginTop: "30px" }}>
-        <ProductCharts products={[]} />
+        <ProductCharts products={products} />
       </div>
 
       <Card
