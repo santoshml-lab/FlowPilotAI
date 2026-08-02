@@ -168,28 +168,38 @@ const totalPages = Math.ceil(
       <ProductStats products={products} />
       <ProductCharts products={products} />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          margin: "20px 0",
-          flexWrap: "wrap",
-          gap: "15px",
-        }}
-      >
-        
-         <Input
-  placeholder="🔍 Search Product..."
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-/> 
-        <div
+      {/* ---------- TOP BAR ---------- */}
+
+<div
   style={{
     display: "flex",
-    gap: "10px",
-    marginTop: "15px",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "20px",
+    gap: "15px",
     flexWrap: "wrap",
+  }}
+>
+  <Input
+    placeholder="🔍 Search Product..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+
+  <Button onClick={() => setPage("addProduct")}>
+    ➕ Add Product
+  </Button>
+</div>
+
+{/* ---------- FILTER BAR ---------- */}
+
+<div
+  style={{
+    display: "flex",
+    gap: "12px",
+    flexWrap: "wrap",
+    alignItems: "center",
+    marginBottom: "25px",
   }}
 >
   <select
@@ -219,24 +229,20 @@ const totalPages = Math.ceil(
     <option>Inactive</option>
     <option>Archived</option>
   </select>
-</div>
-        <select
-  value={sortBy}
-  onChange={(e) => setSortBy(e.target.value)}
->
-  <option value="latest">Latest</option>
-  <option value="name">Product Name</option>
-  <option value="priceLow">Price: Low to High</option>
-  <option value="priceHigh">Price: High to Low</option>
-  <option value="stock">Stock</option>
-</select>
-        <div
-  style={{
-    display: "flex",
-    gap: "10px",
-    flexWrap: "wrap",
-  }}
->
+
+  <select
+    value={sortBy}
+    onChange={(e) => setSortBy(e.target.value)}
+  >
+    <option value="latest">Latest</option>
+    <option value="name">Product Name</option>
+    <option value="priceLow">Price ↑</option>
+    <option value="priceHigh">Price ↓</option>
+    <option value="stock">Stock</option>
+  </select>
+
+  <div style={{ flex: 1 }} />
+
   <Button onClick={() => window.print()}>
     🖨️ Print
   </Button>
@@ -249,6 +255,18 @@ const totalPages = Math.ceil(
     📊 CSV
   </Button>
 </div>
+        
+          
+          
+          
+        
+         
+  
+  
+  
+    
+    
+  
           
           
           
