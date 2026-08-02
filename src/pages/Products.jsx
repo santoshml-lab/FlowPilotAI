@@ -55,6 +55,34 @@ export default function Products({
     loadProducts();
   }
   }
+  async function duplicateProduct(product) {
+  const { error } = await supabase
+    .from("products")
+    .insert([
+      {
+        name: `${product.name} Copy`,
+        sku: `${product.sku}-COPY`,
+        category: product.category,
+        brand: product.brand,
+        supplier: product.supplier,
+        price: product.price,
+        cost_price: product.cost_price,
+        stock: product.stock,
+        low_stock_limit: product.low_stock_limit,
+        barcode: product.barcode,
+        description: product.description,
+        status: product.status,
+        image: product.image,
+      },
+    ]);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("✅ Product Duplicated Successfully");
+    loadProducts();
+  }
+  }
 
   return (
     <div
@@ -175,6 +203,15 @@ export default function Products({
   }}
 >
   👁️
+</button>
+                  <button
+  onClick={() => duplicateProduct(product)}
+  style={{
+    marginRight: "10px",
+    cursor: "pointer",
+  }}
+>
+  📄
 </button>
                   <button
   onClick={() => {
