@@ -1,6 +1,7 @@
 import Card from "../components/ui/Card";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+import ProductCharts from "../components/product/ProductCharts";
 
 
 export default function Reports() {
@@ -81,6 +82,7 @@ async function loadReports() {
           <h3>👥 Customers</h3>
           <h1>{customers}</h1>
         </Card>
+        <ProductCharts products={[]} />
       </div>
     </div>
   );
