@@ -160,6 +160,66 @@ async function loadProducts() {
     </tbody>
   </table>
 </Card>
+      {selectedProduct && (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,.6)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <Card
+      style={{
+        width: "400px",
+      }}
+    >
+      <h2>
+        {popupType === "in"
+          ? "📥 Stock In"
+          : "📤 Stock Out"}
+      </h2>
+
+      <h3>{selectedProduct.name}</h3>
+
+      <input
+        type="number"
+        placeholder="Quantity"
+        value={quantity}
+        onChange={(e) =>
+          setQuantity(e.target.value)
+        }
+        style={{
+          width: "100%",
+          padding: "10px",
+          margin: "20px 0",
+        }}
+      />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <button
+          onClick={() => {
+            setSelectedProduct(null);
+            setQuantity("");
+          }}
+        >
+          Cancel
+        </button>
+
+        <button>
+          Save
+        </button>
+      </div>
+    </Card>
+  </div>
+)}
     </div>
   );
 }
