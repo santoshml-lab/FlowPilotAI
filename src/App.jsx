@@ -9,6 +9,7 @@ import AddCustomer from "./pages/AddCustomer";
 import Products from "./pages/Products";
 import AddProduct from "./pages/AddProduct";
 import Inventory from "./pages/Inventory";
+import InventoryHistory from "./pages/InventoryHistory";
 
 export default function App() {
   const [page, setPage] = useState("dashboard");
@@ -45,6 +46,8 @@ export default function App() {
       setPage={setPage}
     />
   );
+        case "inventoryHistory":
+  return <InventoryHistory />;
         
 
       default:
