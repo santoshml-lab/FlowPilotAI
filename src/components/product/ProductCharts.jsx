@@ -1,6 +1,6 @@
 import Card from "../ui/Card";
 
-export default function ProductCharts() {
+export default function ProductCharts({ products }) {
   return (
     <div
       style={{
