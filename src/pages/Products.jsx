@@ -165,7 +165,7 @@ const totalPages = Math.ceil(
     >
       <h1>📦 Products</h1>
       <ProductStats products={products} />
-      <ProductCharts />
+      <ProductCharts products={products} />
 
       <div
         style={{
