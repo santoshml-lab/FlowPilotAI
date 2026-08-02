@@ -5,6 +5,7 @@ import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
 import ProductStats from "../components/product/ProductStats";
+import ViewProduct from "../components/product/ViewProduct";
 
 export default function Products({
   setPage,
@@ -13,6 +14,7 @@ export default function Products({
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState(null);
   
 
   useEffect(() => {
@@ -220,3 +222,4 @@ const tdStyle = {
   padding: "15px",
   borderBottom: "1px solid #334155",
 };
+
