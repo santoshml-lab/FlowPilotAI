@@ -84,9 +84,14 @@ export default function Sidebar({ setPage }) {
         💸 Expenses
       </div>
 
-      <div style={menuStyle}>
-        📈 Reports
-      </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("reports")}
+>
+  📈 Reports
+</div>
+        
+      
 
       <div style={menuStyle}>
         🤖 AI Assistant
