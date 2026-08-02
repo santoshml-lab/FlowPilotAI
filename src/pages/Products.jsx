@@ -7,6 +7,7 @@ import Table from "../components/ui/Table";
 import ProductStats from "../components/product/ProductStats";
 import ViewProduct from "../components/product/ViewProduct";
 import ProductCharts from "../components/product/ProductCharts";
+import { Download, Printer, FileText } from "lucide-react";
 
 export default function Products({
   setPage,
@@ -229,6 +230,25 @@ const totalPages = Math.ceil(
   <option value="priceHigh">Price: High to Low</option>
   <option value="stock">Stock</option>
 </select>
+        <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+  }}
+>
+  <Button onClick={() => window.print()}>
+    🖨️ Print
+  </Button>
+
+  <Button>
+    📄 PDF
+  </Button>
+
+  <Button>
+    📊 CSV
+  </Button>
+</div>
           
           
           
