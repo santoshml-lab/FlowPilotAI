@@ -168,6 +168,15 @@ export default function Products({
 
                 <td style={tdStyle}>
                   <button
+  onClick={() => setSelectedProduct(product)}
+  style={{
+    marginRight: "10px",
+    cursor: "pointer",
+  }}
+>
+  👁️
+</button>
+                  <button
   onClick={() => {
     setEditingProduct(product);
     setPage("addProduct");
@@ -209,6 +218,10 @@ export default function Products({
         </tbody>
       </table>
       </Card>
+      <ViewProduct
+  product={selectedProduct}
+  onClose={() => setSelectedProduct(null)}
+/>
     </div>
   );
 }
