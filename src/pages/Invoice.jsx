@@ -26,6 +26,15 @@ async function loadInvoices() {
 
   setTotalRevenue(revenue);
 }
+  const paidInvoices = invoices.filter(
+  (invoice) => invoice.status === "Paid"
+).length;
+
+const pendingInvoices = invoices.filter(
+  (invoice) => invoice.status === "Pending"
+).length;
+   
+
   return (
     <div
       style={{
