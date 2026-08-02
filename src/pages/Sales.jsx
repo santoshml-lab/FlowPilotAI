@@ -102,6 +102,22 @@ const [customerCount, setCustomerCount] = useState(0);
     alert(error.message);
     return;
   }
+    const invoiceNo = "INV-" + Date.now();
+
+await supabase
+  .from("invoices")
+  .insert([
+    {
+      invoice_no: invoiceNo,
+      sale_id: 0,
+      customer_name:
+        customers.find(
+          (c) => c.id == selectedCustomer
+        )?.name,
+      total: total,
+      status: "Paid",
+    },
+  ]);
 
   // Update Stock
   await supabase
