@@ -1,6 +1,28 @@
 import Card from "../ui/Card";
 
 export default function ProductCharts({ products }) {
+  const totalProducts = products.length;
+
+const activeProducts = products.filter(
+  (p) => p.status === "Active"
+).length;
+
+const lowStock = products.filter(
+  (p) => Number(p.stock) <= Number(p.low_stock_limit)
+).length;
+
+const outOfStock = products.filter(
+  (p) => Number(p.stock) === 0
+).length;
+
+const categories = {};
+
+products.forEach((p) => {
+  categories[p.category] =
+    (categories[p.category] || 0) + 1;
+});
+
+const categoryList = Object.entries(categories);
   return (
     <div
       style={{
