@@ -83,6 +83,54 @@ async function loadReports() {
           <h1>{customers}</h1>
         </Card>
         <ProductCharts products={[]} />
+        <Card
+  style={{
+    marginTop: "30px",
+  }}
+>
+  <h2>📈 Business Summary</h2>
+
+  <table
+    style={{
+      width: "100%",
+      borderCollapse: "collapse",
+      marginTop: "20px",
+    }}
+  >
+    <thead>
+      <tr
+        style={{
+          background: "#334155",
+        }}
+      >
+        <th style={thStyle}>Metric</th>
+        <th style={thStyle}>Value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td style={tdStyle}>Total Revenue</td>
+        <td style={tdStyle}>₹{revenue}</td>
+      </tr>
+
+      <tr>
+        <td style={tdStyle}>Total Sales</td>
+        <td style={tdStyle}>{sales}</td>
+      </tr>
+
+      <tr>
+        <td style={tdStyle}>Total Products</td>
+        <td style={tdStyle}>{stock}</td>
+      </tr>
+
+      <tr>
+        <td style={tdStyle}>Customers</td>
+        <td style={tdStyle}>{customers}</td>
+      </tr>
+    </tbody>
+  </table>
+</Card>
       </div>
     </div>
   );
