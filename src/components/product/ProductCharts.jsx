@@ -23,6 +23,16 @@ products.forEach((p) => {
 });
 
 const categoryList = Object.entries(categories);
+  const brandValues = {};
+
+products.forEach((p) => {
+  const value = Number(p.price) * Number(p.stock);
+
+  brandValues[p.brand] =
+    (brandValues[p.brand] || 0) + value;
+});
+
+const brandList = Object.entries(brandValues);
   return (
     <div
       style={{
@@ -236,76 +246,59 @@ const categoryList = Object.entries(categories);
 >
 
   <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "6px",
-      }}
-    >
-      <span>Apple</span>
-      <strong>₹4,50,000</strong>
-    </div>
+    {brandList.map(([brand, value]) => {
+  const maxValue = Math.max(...Object.values(brandValues));
 
+  const percent = maxValue
+    ? (value / maxValue) * 100
+    : 0;
+
+  return (
     <div
-      style={{
-        height: "12px",
-        background: "#1e293b",
-        borderRadius: "10px",
-        overflow: "hidden",
-      }}
+      key={brand}
+      style={{ marginBottom: "18px" }}
     >
       <div
         style={{
-          width: "90%",
-          background: "#3b82f6",
-          height: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "6px",
         }}
-      />
-    </div>
-  </div>
+      >
+        <span>{brand}</span>
 
-  <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "6px",
-      }}
-    >
-      <span>Samsung</span>
-      <strong>₹3,20,000</strong>
-    </div>
+        <strong>
+          ₹{value.toLocaleString()}
+        </strong>
+      </div>
 
-    <div
-      style={{
-        height: "12px",
-        background: "#1e293b",
-        borderRadius: "10px",
-        overflow: "hidden",
-      }}
-    >
       <div
         style={{
-          width: "65%",
-          background: "#22c55e",
-          height: "100%",
+          height: "12px",
+          background: "#1e293b",
+          borderRadius: "10px",
+          overflow: "hidden",
         }}
-      />
+      >
+        <div
+          style={{
+            width: `${percent}%`,
+            height: "100%",
+            background: "#3b82f6",
+          }}
+        />
+      </div>
     </div>
-  </div>
-
-  <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "6px",
-      }}
-    >
-      <span>Boat</span>
-      <strong>₹1,25,000</strong>
-    </div>
+  );
+})}
+      
+        
+        
+        
+      
+    
+      
+      
 
     <div
       style={{
