@@ -27,6 +27,61 @@ export default function Sales() {
     setCustomers(customerData || []);
     setProducts(productData || []);
   }
+  async function createSale() {
+  if (!selectedCustomer || !selectedProduct || !quantity) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  const product = products.find(
+    (p) => p.id == selectedProduct
+  );
+
+  if (!product) return;
+
+  if (Number(product.stock) < Number(quantity)) {
+    alert("Not enough stock");
+    return;
+  }
+
+  const total =
+    Number(product.price) * Number(quantity);
+
+  // Save Sale
+  const { error } = await supabase
+    .from("sales")
+    .insert([
+      {
+        customer_id: selectedCustomer,
+        product_id: selectedProduct,
+        quantity: Number(quantity),
+        total: total,
+      },
+    ]);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  // Update Stock
+  await supabase
+    .from("products")
+    .update({
+      stock:
+        Number(product.stock) -
+        Number(quantity),
+    })
+    .eq("id", product.id);
+
+  alert("✅ Sale Created Successfully");
+
+  setSelectedCustomer("");
+  setSelectedProduct("");
+  setQuantity(1);
+
+  loadData();
+  }
 
   return (
     <div
@@ -128,9 +183,10 @@ export default function Sales() {
             placeholder="Quantity"
           />
 
-          <Button>
-            Create Sale
-          </Button>
+          <Button onClick={createSale}>
+  🛒 Create Sale
+</Button>
+                      
         </div>
       </Card>
 
