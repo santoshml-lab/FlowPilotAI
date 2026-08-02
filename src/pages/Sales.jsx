@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import Button from "../components/ui/Button";
 
+
 export default function Sales() {
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
@@ -10,10 +11,17 @@ export default function Sales() {
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [todaySales, setTodaySales] = useState(0);
+const [totalOrders, setTotalOrders] = useState(0);
+const [productsSold, setProductsSold] = useState(0);
+const [customerCount, setCustomerCount] = useState(0);
 
   useEffect(() => {
-    loadData();
-  }, []);
+  loadData();
+  loadDashboard();
+}, []);
+    
+  
 
   async function loadData() {
     const { data: customerData } = await supabase
@@ -27,6 +35,37 @@ export default function Sales() {
     setCustomers(customerData || []);
     setProducts(productData || []);
   }
+  async function loadDashboard() {
+  const { data } = await supabase
+    .from("sales")
+    .select("*");
+
+  if (!data) return;
+
+  setTotalOrders(data.length);
+
+  const revenue = data.reduce(
+    (sum, sale) => sum + Number(sale.total),
+    0
+  );
+
+  setTodaySales(revenue);
+
+  const qty = data.reduce(
+    (sum, sale) => sum + Number(sale.quantity),
+    0
+  );
+
+  setProductsSold(qty);
+
+  const uniqueCustomers = [
+    ...new Set(data.map((sale) => sale.customer_id)),
+  ];
+
+  setCustomerCount(uniqueCustomers.length);
+  }
+
+  
   async function createSale() {
   if (!selectedCustomer || !selectedProduct || !quantity) {
     alert("Please fill all fields");
@@ -81,6 +120,7 @@ export default function Sales() {
   setQuantity(1);
 
   loadData();
+    loadDashboard();
   }
 
   return (
@@ -104,22 +144,22 @@ export default function Sales() {
       >
         <Card>
           <h3>💰 Today's Sales</h3>
-          <h1>₹0</h1>
+          <h1>₹{todaySales}</h1>
         </Card>
 
         <Card>
           <h3>🧾 Total Orders</h3>
-          <h1>0</h1>
+          <h1>{totalOrders}</h1>
         </Card>
 
         <Card>
           <h3>📦 Products Sold</h3>
-          <h1>0</h1>
+          <h1>{productsSold}</h1>
         </Card>
 
         <Card>
           <h3>👥 Customers</h3>
-          <h1>0</h1>
+          <h1>{customerCount}</h1>
         </Card>
       </div>
 
