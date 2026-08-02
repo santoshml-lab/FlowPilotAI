@@ -26,11 +26,21 @@ const categoryList = Object.entries(categories);
   const brandValues = {};
 
 products.forEach((p) => {
-  const value = Number(p.price) * Number(p.stock);
+  const brand = p.brand || "Unknown Brand";
 
-  brandValues[p.brand] =
-    (brandValues[p.brand] || 0) + value;
+  const value =
+    Number(p.price || 0) * Number(p.stock || 0);
+
+  brandValues[brand] =
+    (brandValues[brand] || 0) + value;
 });
+
+
+  
+
+  
+    
+
 
 const brandList = Object.entries(brandValues);
   return (
