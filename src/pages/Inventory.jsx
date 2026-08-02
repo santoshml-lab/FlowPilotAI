@@ -4,6 +4,9 @@ import { supabase } from "../lib/supabase";
 
 export default function Inventory() {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+const [quantity, setQuantity] = useState("");
+const [popupType, setPopupType] = useState("");
   const thStyle = {
   padding: "15px",
   textAlign: "left",
@@ -119,7 +122,30 @@ async function loadProducts() {
     </td>
 
     <td style={tdStyle}>
-      <button>📥 Stock In</button>
+      <div
+  style={{
+    display: "flex",
+    gap: "10px",
+  }}
+>
+  <button
+    onClick={() => {
+      setSelectedProduct(product);
+      setPopupType("in");
+    }}
+  >
+    📥
+  </button>
+
+  <button
+    onClick={() => {
+      setSelectedProduct(product);
+      setPopupType("out");
+    }}
+  >
+    📤
+  </button>
+</div>
     </td>
   </tr>
 ))}
