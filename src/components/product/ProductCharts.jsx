@@ -53,75 +53,56 @@ const categoryList = Object.entries(categories);
   }}
 >
   <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      <span>Electronics</span>
-      <span>75%</span>
-    </div>
+    {categoryList.map(([category, count]) => {
+  const percent = totalProducts
+    ? (count / totalProducts) * 100
+    : 0;
 
+  return (
     <div
-      style={{
-        background: "#1e293b",
-        borderRadius: "10px",
-        overflow: "hidden",
-        height: "10px",
-        marginTop: "5px",
-      }}
+      key={category}
+      style={{ marginBottom: "15px" }}
     >
       <div
         style={{
-          width: "75%",
-          background: "#3b82f6",
-          height: "100%",
+          display: "flex",
+          justifyContent: "space-between",
         }}
-      />
-    </div>
-  </div>
+      >
+        <span>{category}</span>
+        <span>{count}</span>
+      </div>
 
-  <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      <span>Fashion</span>
-      <span>45%</span>
-    </div>
-
-    <div
-      style={{
-        background: "#1e293b",
-        borderRadius: "10px",
-        overflow: "hidden",
-        height: "10px",
-        marginTop: "5px",
-      }}
-    >
       <div
         style={{
-          width: "45%",
-          background: "#22c55e",
-          height: "100%",
+          background: "#1e293b",
+          height: "10px",
+          borderRadius: "10px",
+          overflow: "hidden",
+          marginTop: "5px",
         }}
-      />
+      >
+        <div
+          style={{
+            width: `${percent}%`,
+            height: "100%",
+            background: "#3b82f6",
+          }}
+        />
+      </div>
     </div>
-  </div>
-
-  <div>
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-      }}
-    >
-      <span>Accessories</span>
-      <span>25%</span>
-    </div>
+  );
+})}
+      
+        
+        
+      
+    
+      
+      
+        
+        
+    
 
     <div
       style={{
