@@ -13,6 +13,7 @@ import InventoryHistory from "./pages/InventoryHistory";
 import Sales from "./pages/Sales";
 import Invoice from "./pages/Invoice";
 import Reports from "./pages/Reports";
+import AIAssistant from "./pages/AIAssistant";
 
 export default function App() {
   const [page, setPage] = useState("dashboard");
@@ -57,6 +58,8 @@ export default function App() {
   return <Invoice />;
         case "reports":
   return <Reports />;
+        case "ai":
+  return <AIAssistant />;
         
 
       default:
