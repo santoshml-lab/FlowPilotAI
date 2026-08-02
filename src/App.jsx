@@ -39,6 +39,12 @@ export default function App() {
       setPage={setPage}
     />
   );
+        case "inventory":
+  return (
+    <Inventory
+      setPage={setPage}
+    />
+  );
         
 
       default:
