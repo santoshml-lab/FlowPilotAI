@@ -4,6 +4,7 @@ import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
 import Table from "../components/ui/Table";
+import ProductStats from "../components/product/ProductStats";
 
 export default function Products({
   setPage,
@@ -63,6 +64,7 @@ export default function Products({
       }}
     >
       <h1>📦 Products</h1>
+      <ProductStats products={products} />
 
       <div
         style={{
