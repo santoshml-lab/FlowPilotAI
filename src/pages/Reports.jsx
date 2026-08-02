@@ -3,47 +3,48 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import ProductCharts from "../components/product/ProductCharts";
 
-
 export default function Reports() {
   const [revenue, setRevenue] = useState(0);
-const [sales, setSales] = useState(0);
-const [stock, setStock] = useState(0);
-const [customers, setCustomers] = useState(0);
+  const [sales, setSales] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [customers, setCustomers] = useState(0);
+
   useEffect(() => {
-  loadReports();
-}, []);
+    loadReports();
+  }, []);
 
-async function loadReports() {
-  const { data: salesData } = await supabase
-    .from("sales")
-    .select("*");
+  async function loadReports() {
+    const { data: salesData } = await supabase
+      .from("sales")
+      .select("*");
 
-  const { data: productData } = await supabase
-    .from("products")
-    .select("*");
+    const { data: productData } = await supabase
+      .from("products")
+      .select("*");
 
-  const { data: customerData } = await supabase
-    .from("customers")
-    .select("*");
+    const { data: customerData } = await supabase
+      .from("customers")
+      .select("*");
 
-  setSales(salesData?.length || 0);
+    setSales(salesData?.length || 0);
 
-  const totalRevenue = (salesData || []).reduce(
-    (sum, item) => sum + Number(item.total),
-    0
-  );
+    const totalRevenue = (salesData || []).reduce(
+      (sum, item) => sum + Number(item.total),
+      0
+    );
 
-  setRevenue(totalRevenue);
+    setRevenue(totalRevenue);
 
-  const totalStock = (productData || []).reduce(
-    (sum, item) => sum + Number(item.stock),
-    0
-  );
+    const totalStock = (productData || []).reduce(
+      (sum, item) => sum + Number(item.stock),
+      0
+    );
 
-  setStock(totalStock);
+    setStock(totalStock);
 
-  setCustomers(customerData?.length || 0);
-}
+    setCustomers(customerData?.length || 0);
+  }
+
   return (
     <div
       style={{
@@ -82,56 +83,70 @@ async function loadReports() {
           <h3>👥 Customers</h3>
           <h1>{customers}</h1>
         </Card>
-        <ProductCharts products={[]} />
-        <Card
-  style={{
-    marginTop: "30px",
-  }}
->
-  <h2>📈 Business Summary</h2>
+      </div>
 
-  <table
-    style={{
-      width: "100%",
-      borderCollapse: "collapse",
-      marginTop: "20px",
-    }}
-  >
-    <thead>
-      <tr
+      <div style={{ marginTop: "30px" }}>
+        <ProductCharts products={[]} />
+      </div>
+
+      <Card
         style={{
-          background: "#334155",
+          marginTop: "30px",
         }}
       >
-        <th style={thStyle}>Metric</th>
-        <th style={thStyle}>Value</th>
-      </tr>
-    </thead>
+        <h2>📈 Business Summary</h2>
 
-    <tbody>
-      <tr>
-        <td style={tdStyle}>Total Revenue</td>
-        <td style={tdStyle}>₹{revenue}</td>
-      </tr>
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            marginTop: "20px",
+          }}
+        >
+          <thead>
+            <tr
+              style={{
+                background: "#334155",
+              }}
+            >
+              <th style={thStyle}>Metric</th>
+              <th style={thStyle}>Value</th>
+            </tr>
+          </thead>
 
-      <tr>
-        <td style={tdStyle}>Total Sales</td>
-        <td style={tdStyle}>{sales}</td>
-      </tr>
+          <tbody>
+            <tr>
+              <td style={tdStyle}>Total Revenue</td>
+              <td style={tdStyle}>₹{revenue}</td>
+            </tr>
 
-      <tr>
-        <td style={tdStyle}>Total Products</td>
-        <td style={tdStyle}>{stock}</td>
-      </tr>
+            <tr>
+              <td style={tdStyle}>Total Sales</td>
+              <td style={tdStyle}>{sales}</td>
+            </tr>
 
-      <tr>
-        <td style={tdStyle}>Customers</td>
-        <td style={tdStyle}>{customers}</td>
-      </tr>
-    </tbody>
-  </table>
-</Card>
-      </div>
+            <tr>
+              <td style={tdStyle}>Total Stock</td>
+              <td style={tdStyle}>{stock}</td>
+            </tr>
+
+            <tr>
+              <td style={tdStyle}>Total Customers</td>
+              <td style={tdStyle}>{customers}</td>
+            </tr>
+          </tbody>
+        </table>
+      </Card>
     </div>
   );
 }
+
+const thStyle = {
+  padding: "15px",
+  textAlign: "left",
+};
+
+const tdStyle = {
+  padding: "15px",
+  borderBottom: "1px solid #334155",
+};
