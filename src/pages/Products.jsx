@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
+
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Card from "../components/ui/Card";
-import Table from "../components/ui/Table";
+
 import ProductStats from "../components/product/ProductStats";
-import ViewProduct from "../components/product/ViewProduct";
 import ProductCharts from "../components/product/ProductCharts";
-import { Download, Printer, FileText } from "lucide-react";
+import ViewProduct from "../components/product/ViewProduct";
+
 
 export default function Products({
   setPage,
@@ -154,6 +155,47 @@ const totalPages = Math.ceil(
     loadProducts();
   }
   }
+  function exportCSV() {
+  const headers = [
+    "SKU",
+    "Product",
+    "Brand",
+    "Category",
+    "Price",
+    "Stock",
+    "Status",
+  ];
+
+  const rows = sortedProducts.map((p) => [
+    p.sku,
+    p.name,
+    p.brand,
+    p.category,
+    p.price,
+    p.stock,
+    p.status,
+  ]);
+
+  const csv =
+    [headers, ...rows]
+      .map((row) => row.join(","))
+      .join("\n");
+
+  const blob = new Blob([csv], {
+    type: "text/csv;charset=utf-8;",
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+
+  link.href = url;
+  link.download = "products.csv";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+  }
 
   return (
     <div
@@ -196,9 +238,9 @@ const totalPages = Math.ceil(
 <div
   style={{
     display: "flex",
+    alignItems: "center",
     gap: "12px",
     flexWrap: "wrap",
-    alignItems: "center",
     marginBottom: "25px",
   }}
 >
@@ -241,42 +283,31 @@ const totalPages = Math.ceil(
     <option value="stock">Stock</option>
   </select>
 
-  <div style={{ flex: 1 }} />
+  <div style={{ marginLeft: "auto", display: "flex", gap: "10px" }}>
+    <Button onClick={() => window.print()}>
+      🖨️ Print
+    </Button>
 
-  <Button onClick={() => window.print()}>
-    🖨️ Print
-  </Button>
+    <Button>
+      📄 PDF
+    </Button>
 
-  <Button>
-    📄 PDF
-  </Button>
-
-  <Button>
-    📊 CSV
-  </Button>
-</div>
-        
-          
-          
-          
-        
-         
-  
-  
-  
-    
-    
-  
-          
-          
-          
-        <Button onClick={() => setPage("addProduct")}>
-  ➕ Add Product
+    <Button onClick={exportCSV}>
+  📊 CSV
 </Button>
-        
-            
-            
-      </div>
+      
+    
+  </div>
+</div>
+
+
+    
+
+  
+  
+    
+    
+    
       <Card>
 
       <table
