@@ -28,6 +28,34 @@ async function loadProducts() {
 
   setProducts(data || []);
 }
+  async function updateStock() {
+  if (!quantity) return;
+
+  let newStock =
+    popupType === "in"
+      ? Number(selectedProduct.stock) + Number(quantity)
+      : Number(selectedProduct.stock) - Number(quantity);
+
+  if (newStock < 0) newStock = 0;
+
+  const { error } = await supabase
+    .from("products")
+    .update({
+      stock: newStock,
+    })
+    .eq("id", selectedProduct.id);
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("✅ Stock Updated Successfully");
+
+    setSelectedProduct(null);
+    setQuantity("");
+
+    loadProducts();
+  }
+  }
   
   return (
     <div
@@ -213,9 +241,11 @@ async function loadProducts() {
           Cancel
         </button>
 
-        <button>
-          Save
-        </button>
+        <button onClick={updateStock}>
+  Save
+</button>
+          
+        
       </div>
     </Card>
   </div>
