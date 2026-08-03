@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import RevenueChart from "../components/dashboard/RevenueChart";
 import TopProductsChart from "../components/dashboard/TopProductsChart";
 import AIInsights from "../components/dashboard/AIInsights";
+import RecentSales from "../components/dashboard/RecentSales";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -133,8 +134,8 @@ export default function Dashboard() {
           marginTop: "30px",
         }}
       >
-        <div className="card">
-          <h2>📈 Recent Activity</h2>
+        
+          <RecentSales />
 
           <p style={{ color: "#94a3b8" }}>
             No recent activity available.
