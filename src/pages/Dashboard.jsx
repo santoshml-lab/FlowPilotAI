@@ -9,6 +9,7 @@ import AIInsights from "../components/dashboard/AIInsights";
 import RecentSales from "../components/dashboard/RecentSales";
 import LowStock from "../components/dashboard/LowStock";
 
+
 export default function Dashboard() {
   const [stats, setStats] = useState({
   revenue: 0,
