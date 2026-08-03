@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import Card from "../components/ui/Card";
 
+
 export default function Invoice() {
   const [invoices, setInvoices] = useState([]);
   const [totalRevenue, setTotalRevenue] = useState(0);
