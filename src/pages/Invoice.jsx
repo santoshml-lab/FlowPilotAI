@@ -75,6 +75,43 @@ const pendingInvoices = invoices.filter(
           <h1>{pendingInvoices}</h1>
         </Card>
       </div>
+            
+
+      {/* Invoice List */}
+
+      <div style={{ marginTop: "30px" }}>
+
+        {invoices.map((invoice) => (
+
+          <Card key={invoice.id} style={{ marginBottom: "15px" }}>
+
+            <h3>{invoice.invoice_no}</h3>
+
+            <p>👤 {invoice.customer_name}</p>
+
+            <p>📦 {invoice.product_name}</p>
+
+            <p>💰 ₹{invoice.total}</p>
+
+            <button
+              onClick={() =>
+                window.open(
+                  `https://salespilot-l1d3.onrender.com/invoice/${invoice.invoice_no}`
+                )
+              }
+            >
+              📄 Download PDF
+            </button>
+
+          </Card>
+
+        ))}
+
+      </div>
+
+    </div>
+  );
+}
     </div>
   );
 }
