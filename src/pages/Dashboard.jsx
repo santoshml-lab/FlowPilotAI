@@ -150,20 +150,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* AI Insights */}
-
-      <div
-        className="card"
-        style={{
-          marginTop: "30px",
-        }}
-      >
-        <h2>🤖 AI Business Insights</h2>
-
-        <p style={{ color: "#cbd5e1" }}>
-          AI insights will appear here after business data is available.
-        </p>
-      </div>
+      <AIInsights />
     </div>
   );
 }
