@@ -1,8 +1,22 @@
 import StatCard from "../components/StatCard";
 import SalesChart from "../components/SalesChart";
 import "../styles/dashboard.css";
+import { getDashboard } from "../services/api";
 
 export default function Dashboard() {
+  useEffect(() => {
+
+  async function loadData() {
+
+    const data = await getDashboard();
+
+    setStats(data);
+
+  }
+
+  loadData();
+
+}, []);
   return (
     <div
       style={{
