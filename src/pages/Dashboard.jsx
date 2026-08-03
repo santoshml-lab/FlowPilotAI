@@ -137,10 +137,10 @@ export default function Dashboard() {
         
           <RecentSales />
 
-          <p style={{ color: "#94a3b8" }}>
-            No recent activity available.
-          </p>
-        </div>
+          
+            
+          
+        
 
         <div className="card">
           <h2>⚠ Low Stock</h2>
