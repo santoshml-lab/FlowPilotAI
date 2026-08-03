@@ -5,6 +5,7 @@ import { getDashboard } from "../services/api";
 import { useEffect, useState } from "react";
 import RevenueChart from "../components/dashboard/RevenueChart";
 import TopProductsChart from "../components/dashboard/TopProductsChart";
+import AIInsights from "../components/dashboard/AIInsights";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
