@@ -4,6 +4,7 @@ import "../styles/dashboard.css";
 import { getDashboard } from "../services/api";
 import { useEffect, useState } from "react";
 import RevenueChart from "../components/dashboard/RevenueChart";
+import TopProductsChart from "../components/dashboard/TopProductsChart";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -117,6 +118,9 @@ export default function Dashboard() {
       <div style={{ marginTop: "30px" }}>
         <RevenueChart />
       </div>
+      <div style={{ marginTop: "30px" }}>
+  <TopProductsChart />
+</div>
 
       {/* Dashboard Widgets */}
 
