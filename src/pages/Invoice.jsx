@@ -75,7 +75,7 @@ const pendingInvoices = invoices.filter(
           <h1>{pendingInvoices}</h1>
         </Card>
       </div>
-            
+    </div>   
 
       {/* Invoice List */}
 
