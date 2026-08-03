@@ -10,6 +10,7 @@ import RecentSales from "../components/dashboard/RecentSales";
 import LowStock from "../components/dashboard/LowStock";
 import BestCustomer from "../components/dashboard/BestCustomer";
 import TopProduct from "../components/dashboard/TopProduct";
+import NotificationBell from "../components/dashboard/NotificationBell";
 
 
 export default function Dashboard() {
@@ -158,6 +159,9 @@ export default function Dashboard() {
       </div>
 
       <AIInsights />
+      <div style={{ marginTop: "30px" }}>
+  <NotificationBell />
+</div>
     </div>
   );
 }
