@@ -115,6 +115,36 @@ export default function Invoice() {
             >
               📄 Download PDF
             </button>
+            <button
+  style={{
+    marginTop: "10px",
+    marginLeft: "10px",
+    padding: "10px 18px",
+    background: "#16a34a",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+  }}
+  onClick={async () => {
+    try {
+      const response = await fetch(
+        `https://salespilot-l1d3.onrender.com/send-invoice/${invoice.invoice_no}`,
+        {
+          method: "POST",
+        }
+      );
+
+      const data = await response.json();
+
+      alert(data.message);
+    } catch (error) {
+      alert("Failed to send invoice.");
+    }
+  }}
+>
+  📧 Send Invoice
+</button>
           </Card>
         ))}
       </div>
