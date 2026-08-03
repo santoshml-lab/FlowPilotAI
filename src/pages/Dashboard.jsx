@@ -2,8 +2,16 @@ import StatCard from "../components/StatCard";
 import SalesChart from "../components/SalesChart";
 import "../styles/dashboard.css";
 import { getDashboard } from "../services/api";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
+  const [stats, setStats] = useState({
+  revenue: 0,
+  customers: 0,
+  products: 0,
+  stock: 0,
+  low_stock: 0,
+});
   useEffect(() => {
 
   async function loadData() {
