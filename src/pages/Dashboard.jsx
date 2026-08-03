@@ -8,6 +8,7 @@ import TopProductsChart from "../components/dashboard/TopProductsChart";
 import AIInsights from "../components/dashboard/AIInsights";
 import RecentSales from "../components/dashboard/RecentSales";
 import LowStock from "../components/dashboard/LowStock";
+import BestCustomer from "../components/dashboard/BestCustomer";
 
 
 export default function Dashboard() {
@@ -145,6 +146,7 @@ export default function Dashboard() {
         
 
         <LowStock />
+        <BestCustomer />
           
 
           
