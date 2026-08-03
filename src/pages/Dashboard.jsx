@@ -7,6 +7,7 @@ import RevenueChart from "../components/dashboard/RevenueChart";
 import TopProductsChart from "../components/dashboard/TopProductsChart";
 import AIInsights from "../components/dashboard/AIInsights";
 import RecentSales from "../components/dashboard/RecentSales";
+import LowStock from "../components/dashboard/LowStock";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -142,13 +143,13 @@ export default function Dashboard() {
           
         
 
-        <div className="card">
-          <h2>⚠ Low Stock</h2>
+        <LowStock />
+          
 
-          <p style={{ color: "#94a3b8" }}>
-            Everything looks good.
-          </p>
-        </div>
+          
+            
+          
+        
       </div>
 
       <AIInsights />
