@@ -65,28 +65,28 @@ export default function Dashboard() {
       >
         <StatCard
           title="Revenue"
-          value="₹0"
+          value={`₹${stats.revenue}`}
           icon="💰"
           color="#16a34a"
         />
 
         <StatCard
           title="Products"
-          value="0"
+          value={stats.products}
           icon="📦"
           color="#2563eb"
         />
 
         <StatCard
           title="Customers"
-          value="0"
+          value={stats.customers}
           icon="👥"
           color="#f59e0b"
         />
 
         <StatCard
           title="Sales"
-          value="0"
+          
           icon="📈"
           color="#ef4444"
         />
