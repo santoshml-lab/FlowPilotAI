@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
+import { useState } from "react";
 
 export default function Settings() {
   const [form, setForm] = useState({
@@ -8,6 +10,7 @@ export default function Settings() {
     phone: "",
     address: "",
   });
+  const [logo, setLogo] = useState(null);
 
   useEffect(() => {
     loadSettings();
