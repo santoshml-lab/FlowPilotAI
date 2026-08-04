@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
-import { useState } from "react";
+
 
 export default function Settings() {
   const [form, setForm] = useState({
@@ -35,6 +35,37 @@ export default function Settings() {
     });
 
     alert("✅ Settings Saved Successfully");
+  }
+
+  async function uploadLogo() {
+  if (!logo) {
+    alert("Select logo first");
+    return;
+  }
+
+  const fileName = `${Date.now()}_${logo.name}`;
+
+  const { error } = await supabase.storage
+    .from("logos")
+    .upload(fileName, logo);
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  const { data } = supabase.storage
+    .from("logos")
+    .getPublicUrl(fileName);
+
+  await supabase
+    .from("settings")
+    .update({
+      logo_url: data.publicUrl,
+    })
+    .eq("id", 1);
+
+  alert("✅ Logo Uploaded Successfully");
   }
 
   return (
@@ -92,6 +123,14 @@ export default function Settings() {
         <button onClick={saveSettings}>
           💾 Save Settings
         </button>
+        <input
+  type="file"
+  onChange={(e) => setLogo(e.target.files[0])}
+/>
+
+<button onClick={uploadLogo}>
+  🖼 Upload Logo
+</button>
       </div>
     </div>
   );
