@@ -46,7 +46,7 @@ export default function Settings() {
   const fileName = `${Date.now()}_${logo.name}`;
 
   const { error } = await supabase.storage
-    .from("logos")
+    .from("products")
     .upload(fileName, logo);
 
   if (error) {
@@ -55,8 +55,9 @@ export default function Settings() {
   }
 
   const { data } = supabase.storage
-    .from("logos")
-    .getPublicUrl(fileName);
+    .from("products")
+.getPublicUrl(fileName)
+    
 
   await supabase
     .from("settings")
