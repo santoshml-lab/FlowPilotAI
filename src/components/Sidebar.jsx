@@ -102,9 +102,14 @@ export default function Sidebar({ setPage }) {
         
       
 
-      <div style={menuStyle}>
-        ⚙ Settings
-      </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("settings")}
+>
+  ⚙ Settings
+</div>
+        
+      
     </div>
   );
 }
