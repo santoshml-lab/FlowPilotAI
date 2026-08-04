@@ -4,6 +4,7 @@ import "../styles/dashboard.css";
 import { getDashboard } from "../services/api";
 import { useEffect, useState } from "react";
 import RevenueChart from "../components/dashboard/RevenueChart";
+import { supabase } from "../lib/supabase";
 import TopProductsChart from "../components/dashboard/TopProductsChart";
 import AIInsights from "../components/dashboard/AIInsights";
 import RecentSales from "../components/dashboard/RecentSales";
@@ -21,6 +22,7 @@ export default function Dashboard() {
   stock: 0,
   low_stock: 0,
 });
+  const [settings, setSettings] = useState({});
   useEffect(() => {
 
   async function loadData() {
@@ -32,8 +34,22 @@ export default function Dashboard() {
   }
 
   loadData();
+    async function loadSettings() {
+  const { data } = await supabase
+    .from("settings")
+    .select("*")
+    .eq("id", 1)
+    .single();
+
+  if (data) {
+    setSettings(data);
+  }
+}
+
+loadSettings();
 
 }, []);
+  
   return (
     <div
       style={{
@@ -43,6 +59,37 @@ export default function Dashboard() {
         color: "white",
       }}
     >
+      <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+    marginBottom: "25px",
+  }}
+>
+  {settings.logo_url && (
+    <img
+      src={settings.logo_url}
+      alt="Logo"
+      style={{
+        width: "80px",
+        height: "80px",
+        borderRadius: "12px",
+        objectFit: "cover",
+      }}
+    />
+  )}
+
+  <div>
+    <h2 style={{ margin: 0 }}>
+      {settings.company_name}
+    </h2>
+
+    <p style={{ color: "#94a3b8", marginTop: "5px" }}>
+      Owner: {settings.owner_name}
+    </p>
+  </div>
+</div>
       <h1
         style={{
           fontSize: "38px",
