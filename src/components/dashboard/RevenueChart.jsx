@@ -1,39 +1,56 @@
+import { useEffect, useState } from "react";
+import { getRevenueChart } from "../../services/api";
 
 import {
   LineChart,
   Line,
   XAxis,
   YAxis,
-  Tooltip,
   CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { day: "Mon", revenue: 1200 },
-  { day: "Tue", revenue: 1800 },
-  { day: "Wed", revenue: 2400 },
-  { day: "Thu", revenue: 1500 },
-  { day: "Fri", revenue: 3000 },
-  { day: "Sat", revenue: 4200 },
-  { day: "Sun", revenue: 3800 },
-];
-
 export default function RevenueChart() {
-  return (
-    <div className="card">
-      <h2>📈 Revenue Overview</h2>
 
-      <ResponsiveContainer width="100%" height={300}>
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    loadChart();
+  }, []);
+
+  async function loadChart() {
+    const chart = await getRevenueChart();
+    setData(chart);
+  }
+
+  return (
+    <div
+      style={{
+        background: "#1e293b",
+        padding: "20px",
+        borderRadius: "15px",
+        marginTop: "25px",
+      }}
+    >
+      <h2 style={{ color: "white" }}>
+        📈 Revenue Trend
+      </h2>
+
+      <ResponsiveContainer width="100%" height={350}>
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
+
+          <XAxis dataKey="date" />
+
           <YAxis />
+
           <Tooltip />
+
           <Line
             type="monotone"
             dataKey="revenue"
-            stroke="#2563eb"
+            stroke="#22c55e"
             strokeWidth={3}
           />
         </LineChart>
@@ -41,3 +58,4 @@ export default function RevenueChart() {
     </div>
   );
 }
+  
