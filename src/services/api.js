@@ -7,3 +7,7 @@ export async function getDashboard() {
   return await response.json();
 
 }
+export async function getNotifications() {
+  const response = await fetch(`${API}/notifications`);
+  return await response.json();
+}
