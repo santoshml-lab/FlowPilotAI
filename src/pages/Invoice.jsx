@@ -59,56 +59,75 @@ export default function Invoice() {
 
         <tbody>
 
+  {invoices
+    .filter(
+      (item) =>
+        item.invoice_no.toLowerCase().includes(search.toLowerCase()) ||
+        item.customer_name.toLowerCase().includes(search.toLowerCase())
+    )
+    .map((item) => (
+
+      <tr key={item.id}>
+
+        <td>{item.invoice_no}</td>
+
+        <td>{item.customer_name}</td>
+
+        <td>₹{item.total}</td>
+
+        <td>
+          <span
+            style={{
+              background:
+                item.status === "Paid" ? "#16a34a" : "#dc2626",
+              padding: "6px 12px",
+              borderRadius: "20px",
+              color: "white",
+              fontWeight: "bold",
+            }}
+          >
+            {item.status}
+          </span>
+        </td>
+
+        <td>
+          <a
+            href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            📥 PDF
+          </a>
+        </td>
+
+        <td>
+          <button
+            onClick={async () => {
+              await fetch(
+                `https://salespilot-l1d3.onrender.com/send-invoice/${item.invoice_no}`,
+                {
+                  method: "POST",
+                }
+              );
+
+              alert("Invoice Sent");
+            }}
+          >
+            📧 Send
+          </button>
+        </td>
+
+      </tr>
+
+    ))}
+
+</tbody>
+
           
 
-            <tr key={item.id}>
+            
 
-              <td>{item.invoice_no}</td>
-
-              <td>{item.customer_name}</td>
-
-              <td>₹{item.total}</td>
-
-              <td>{item.status}</td>
-
-              <td>
-
-                <a
-                  href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  📥 PDF
-                </a>
-
-              </td>
-
-              <td>
-
-                <button
-                  onClick={async () => {
-
-                    await fetch(
-                      `https://salespilot-l1d3.onrender.com/send-invoice/${item.invoice_no}`,
-                      {
-                        method: "POST",
-                      }
-                    );
-
-                    alert("Invoice Sent");
-
-                  }}
-                >
-                  📧 Send
-                </button>
-
-              </td>
-
-            </tr>
-
-          ))}
-
-        </tbody>
+              
 
       </table>
 
