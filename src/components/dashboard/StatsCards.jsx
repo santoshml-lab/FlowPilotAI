@@ -1,34 +1,23 @@
 import "./Dashboard.css";
 
 export default function StatsCards({ stats }) {
+  const cards = [
+    { icon: "💰", title: "Revenue", value: `₹${stats.revenue}` },
+    { icon: "👥", title: "Customers", value: stats.customers },
+    { icon: "📦", title: "Products", value: stats.products },
+    { icon: "📊", title: "Stock Units", value: stats.stock },
+    { icon: "🔴", title: "Low Stock", value: stats.low_stock },
+  ];
+
   return (
     <div className="stats-grid">
-
-      <div className="card">
-        <h3>💰 Revenue</h3>
-        <h2>₹{stats.revenue}</h2>
-      </div>
-
-      <div className="card">
-        <h3>👥 Customers</h3>
-        <h2>{stats.customers}</h2>
-      </div>
-
-      <div className="card">
-        <h3>📦 Products</h3>
-        <h2>{stats.products}</h2>
-      </div>
-
-      <div className="card">
-        <h3>📊 Stock</h3>
-        <h2>{stats.stock}</h2>
-      </div>
-
-      <div className="card">
-        <h3>🔴 Low Stock</h3>
-        <h2>{stats.low_stock}</h2>
-      </div>
-
+      {cards.map((card, index) => (
+        <div className="card" key={index}>
+          <div className="card-icon">{card.icon}</div>
+          <h3>{card.title}</h3>
+          <h2>{card.value}</h2>
+        </div>
+      ))}
     </div>
   );
 }
