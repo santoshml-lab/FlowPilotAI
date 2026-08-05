@@ -16,6 +16,7 @@ import Reports from "./pages/Reports";
 import AIAssistant from "./pages/AIAssistant";
 import Settings from "./pages/Settings";
 
+
 export default function App() {
   const [page, setPage] = useState("dashboard");
   const [editingProduct, setEditingProduct] = useState(null);
@@ -63,6 +64,8 @@ export default function App() {
   return <AIAssistant />;
         case "settings":
   return <Settings />;
+        case "notifications":
+  return <Notifications />;
         
 
       default:
