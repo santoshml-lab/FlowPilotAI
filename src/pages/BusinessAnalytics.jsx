@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import RevenueChart from "../components/dashboard/RevenueChart";
 import {
   getBusinessAnalytics,
   getDashboard,
@@ -117,6 +118,7 @@ export default function BusinessAnalytics() {
           <h1>{stats.low_stock}</h1>
         </div>
       </div>
+      <RevenueChart />
 
       {/* AI Analysis */}
 
@@ -128,6 +130,7 @@ export default function BusinessAnalytics() {
           lineHeight: "1.8",
         }}
       >
+        
         <h2>🤖 AI Analysis</h2>
 
         {loading ? (
