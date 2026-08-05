@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
-
   const [count, setCount] = useState(0);
+  const [notifications, setNotifications] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     loadNotifications();
@@ -15,6 +16,7 @@ export default function Navbar() {
 
     const data = await res.json();
 
+    setNotifications(data);
     setCount(data.length);
   }
 
@@ -51,34 +53,82 @@ export default function Navbar() {
           }}
         />
 
-        <div
-          style={{
-            position: "relative",
-            cursor: "pointer",
-            fontSize: "24px",
-          }}
-        >
-          🔔
+        <div style={{ position: "relative" }}>
+          <div
+            onClick={() => setOpen(!open)}
+            style={{
+              cursor: "pointer",
+              fontSize: "24px",
+            }}
+          >
+            🔔
 
-          {count > 0 && (
-            <span
+            {count > 0 && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: "-6px",
+                  right: "-8px",
+                  background: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  width: "18px",
+                  height: "18px",
+                  fontSize: "11px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {count}
+              </span>
+            )}
+          </div>
+
+          {open && (
+            <div
               style={{
                 position: "absolute",
-                top: "-8px",
-                right: "-8px",
-                background: "red",
-                color: "white",
-                borderRadius: "50%",
-                width: "18px",
-                height: "18px",
-                fontSize: "11px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                top: "40px",
+                right: 0,
+                width: "330px",
+                maxHeight: "400px",
+                overflowY: "auto",
+                background: "#1e293b",
+                borderRadius: "12px",
+                padding: "15px",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
+                zIndex: 999,
               }}
             >
-              {count}
-            </span>
+              <h3>Notifications</h3>
+
+              {notifications.length === 0 ? (
+                <p>No notifications</p>
+              ) : (
+                notifications.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      borderBottom: "1px solid #334155",
+                      padding: "10px 0",
+                    }}
+                  >
+                    <strong>{item.title}</strong>
+
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        marginTop: "5px",
+                        color: "#cbd5e1",
+                      }}
+                    >
+                      {item.message}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
           )}
         </div>
 
