@@ -11,3 +11,7 @@ export async function getNotifications() {
   const response = await fetch(`${API}/notifications`);
   return await response.json();
 }
+export async function getInvoices() {
+  const response = await fetch(`${API}/invoices`);
+  return await response.json();
+}
