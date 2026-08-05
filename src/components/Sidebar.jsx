@@ -93,6 +93,12 @@ export default function Sidebar({ setPage }) {
 >
   📈 Reports
 </div>
+      <div
+  style={menuStyle}
+  onClick={() => setPage("businessAnalytics")}
+>
+  📊 AI Analytics
+</div>
 
       
         
