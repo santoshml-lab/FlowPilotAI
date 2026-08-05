@@ -26,25 +26,20 @@ export default function AIAssistant() {
     setLoading(true);
 
     try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: prompt,
-        }),
-      });
+      const res = await fetch(
+  `${API_URL}?question=${encodeURIComponent(prompt)}`
+);
 
-      const data = await res.json();
+const data = await res.json();
 
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          text: data.response,
-        },
-      ]);
+setMessages((prev) => [
+  ...prev,
+  {
+    role: "assistant",
+    text: data.answer,
+  },
+]);
+    
 
       setPrompt("");
     } catch (err) {
