@@ -97,12 +97,23 @@ export default function Invoice() {
 
         <td>
           <a
-            href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            📥 PDF
-          </a>
+  href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
+  target="_blank"
+  rel="noreferrer"
+  style={{
+    background: "#16a34a",
+    color: "white",
+    padding: "8px 12px",
+    borderRadius: "8px",
+    textDecoration: "none",
+  }}
+>
+  📥 PDF
+</a>
+            
+                                 
+            
+          
         </td>
 
         <td>
