@@ -95,7 +95,7 @@ export default function BusinessAnalytics() {
     <h1>{stats.low_stock}</h1>
   </div>
 
-</div>7
+</div>
       <h1>📊 AI Business Analytics</h1>
 
       <div
