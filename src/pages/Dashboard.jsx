@@ -206,9 +206,9 @@ loadSettings();
       </div>
 
       <AIInsights />
-      <div style={{ marginTop: "30px" }}>
-  <NotificationBell />
-</div>
+      
+  
+
     </div>
   );
 }
