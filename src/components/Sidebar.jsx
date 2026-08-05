@@ -59,9 +59,9 @@ export default function Sidebar({ setPage }) {
 >
   📜 Inventory History
 </div>
-      <button onClick={() => setPage("notifications")}>
-  🔔 Notifications
-</button>
+      
+  
+
         
       
 
