@@ -6,6 +6,7 @@ export default function BusinessAnalytics() {
 
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(true);
+  const [health, setHealth] = useState(92);q
   const [stats, setStats] = useState({
   revenue: 0,
   customers: 0,
@@ -49,6 +50,30 @@ export default function BusinessAnalytics() {
     marginBottom: "25px",
   }}
 >
+<div
+  style={{
+    background: "#1e293b",
+    padding: "30px",
+    borderRadius: "15px",
+    textAlign: "center",
+    marginBottom: "25px",
+  }}
+>
+  <h2>🟢 Business Health Score</h2>
+
+  <h1
+    style={{
+      fontSize: "60px",
+      color: "#22c55e",
+      margin: "15px 0",
+    }}
+  >
+    {health}%
+  </h1>
+
+  <h3>Excellent</h3>
+</div>
+
 
   <div style={cardStyle}>
     <h3>💰 Revenue</h3>
