@@ -65,79 +65,44 @@ const [customerCount, setCustomerCount] = useState(0);
   setCustomerCount(uniqueCustomers.length);
   }
 
-  
   async function createSale() {
-  if (!selectedCustomer || !selectedProduct || !quantity) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  const product = products.find(
-    (p) => p.id == selectedProduct
+  const res = await fetch(
+    "https://salespilot-l1d3.onrender.com/create-sale",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        customer_id: Number(selectedCustomer),
+        product_id: Number(selectedProduct),
+        quantity: Number(quantity),
+      }),
+    }
   );
 
-  if (!product) return;
+  const data = await res.json();
 
-  if (Number(product.stock) < Number(quantity)) {
-    alert("Not enough stock");
+  if (!res.ok) {
+    alert(data.detail || "Sale failed");
     return;
   }
 
-  const total =
-    Number(product.price) * Number(quantity);
-
-  // Save Sale
-  const { error } = await supabase
-    .from("sales")
-    .insert([
-      {
-        customer_id: selectedCustomer,
-        product_id: selectedProduct,
-        quantity: Number(quantity),
-        total: total,
-      },
-    ]);
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-    const invoiceNo = "INV-" + Date.now();
-
-await supabase
-  .from("invoices")
-  .insert([
-    {
-      invoice_no: invoiceNo,
-      sale_id: 0,
-      customer_name:
-        customers.find(
-          (c) => c.id == selectedCustomer
-        )?.name,
-      total: total,
-      status: "Paid",
-    },
-  ]);
-
-  // Update Stock
-  await supabase
-    .from("products")
-    .update({
-      stock:
-        Number(product.stock) -
-        Number(quantity),
-    })
-    .eq("id", product.id);
-
-  alert("✅ Sale Created Successfully");
+  alert("✅ " + data.message);
 
   setSelectedCustomer("");
   setSelectedProduct("");
   setQuantity(1);
 
   loadData();
-    loadDashboard();
+  loadDashboard();
   }
+
+  
+  
+  
+    
+  
 
   return (
     <div
