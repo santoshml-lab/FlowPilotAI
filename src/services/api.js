@@ -43,4 +43,13 @@ export async function getRevenueChart() {
   const response = await fetch(`${API}/revenue-chart`);
   return await response.json();
 }
+export async function getTopProducts() {
+
+  const response = await fetch(
+    `${API}/top-products`
+  );
+
+  return await response.json();
+
+}
   
