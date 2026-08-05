@@ -1,153 +1,101 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabase";
-import Card from "../components/ui/Card";
-
+import { getInvoices } from "../services/api";
 
 export default function Invoice() {
+
   const [invoices, setInvoices] = useState([]);
-  const [totalRevenue, setTotalRevenue] = useState(0);
 
   useEffect(() => {
     loadInvoices();
   }, []);
 
   async function loadInvoices() {
-    const { data } = await supabase
-      .from("invoices")
-      .select("*")
-      .order("id", { ascending: false });
-
-    setInvoices(data || []);
-
-    const revenue = (data || []).reduce(
-      (sum, item) => sum + Number(item.total),
-      0
-    );
-
-    setTotalRevenue(revenue);
+    const data = await getInvoices();
+    setInvoices(data);
   }
-
-  const paidInvoices = invoices.filter(
-    (invoice) => invoice.status === "Paid"
-  ).length;
-
-  const pendingInvoices = invoices.filter(
-    (invoice) => invoice.status === "Pending"
-  ).length;
 
   return (
     <div
       style={{
         padding: "30px",
-        background: "#0f172a",
-        minHeight: "100vh",
         color: "white",
       }}
     >
-      <h1>🧾 Invoice Center</h1>
+      <h1>📄 Invoice History</h1>
 
-      {/* Summary Cards */}
-
-      <div
+      <table
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
-          gap: "20px",
+          width: "100%",
           marginTop: "25px",
+          borderCollapse: "collapse",
         }}
       >
-        <Card>
-          <h3>📄 Total Invoices</h3>
-          <h1>{invoices.length}</h1>
-        </Card>
+        <thead>
+          <tr>
+            <th>Invoice</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Download</th>
+            <th>Email</th>
+          </tr>
+        </thead>
 
-        <Card>
-          <h3>💰 Total Revenue</h3>
-          <h1>₹{totalRevenue}</h1>
-        </Card>
+        <tbody>
 
-        <Card>
-          <h3>🟢 Paid</h3>
-          <h1>{paidInvoices}</h1>
-        </Card>
+          {invoices.map((item) => (
 
-        <Card>
-          <h3>🟡 Pending</h3>
-          <h1>{pendingInvoices}</h1>
-        </Card>
-      </div>
+            <tr key={item.id}>
 
-      {/* Invoice List */}
+              <td>{item.invoice_no}</td>
 
-      <div style={{ marginTop: "35px" }}>
-        {invoices.map((invoice) => (
-          <Card
-            key={invoice.id}
-            style={{ marginBottom: "20px", padding: "20px" }}
-          >
-            <h3>{invoice.invoice_no}</h3>
+              <td>{item.customer_name}</td>
 
-            <p>👤 Customer : {invoice.customer_name}</p>
+              <td>₹{item.total}</td>
 
-            <p>📦 Product : {invoice.product_name}</p>
+              <td>{item.status}</td>
 
-            <p>🔢 Quantity : {invoice.quantity}</p>
+              <td>
 
-            <p>💰 Total : ₹{invoice.total}</p>
+                <a
+                  href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  📥 PDF
+                </a>
 
-            <p>📌 Status : {invoice.status}</p>
+              </td>
 
-            <button
-              style={{
-                marginTop: "10px",
-                padding: "10px 18px",
-                background: "#2563eb",
-                color: "white",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                window.open(
-                  `https://salespilot-l1d3.onrender.com/invoice/${invoice.invoice_no}`
-                )
-              }
-            >
-              📄 Download PDF
-            </button>
-            <button
-  style={{
-    marginTop: "10px",
-    marginLeft: "10px",
-    padding: "10px 18px",
-    background: "#16a34a",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    cursor: "pointer",
-  }}
-  onClick={async () => {
-    try {
-      const response = await fetch(
-        `https://salespilot-l1d3.onrender.com/send-invoice/${invoice.invoice_no}`,
-        {
-          method: "POST",
-        }
-      );
+              <td>
 
-      const data = await response.json();
+                <button
+                  onClick={async () => {
 
-      alert(data.message);
-    } catch (error) {
-      alert("Failed to send invoice.");
-    }
-  }}
->
-  📧 Send Invoice
-</button>
-          </Card>
-        ))}
-      </div>
+                    await fetch(
+                      `https://salespilot-l1d3.onrender.com/send-invoice/${item.invoice_no}`,
+                      {
+                        method: "POST",
+                      }
+                    );
+
+                    alert("Invoice Sent");
+
+                  }}
+                >
+                  📧 Send
+                </button>
+
+              </td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
     </div>
   );
 }
