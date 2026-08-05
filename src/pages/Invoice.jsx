@@ -76,19 +76,23 @@ export default function Invoice() {
         <td>₹{item.total}</td>
 
         <td>
-          <span
-            style={{
-              background:
-                item.status === "Paid" ? "#16a34a" : "#dc2626",
-              padding: "6px 12px",
-              borderRadius: "20px",
-              color: "white",
-              fontWeight: "bold",
-            }}
-          >
-            {item.status}
-          </span>
-        </td>
+  <span
+    style={{
+      background:
+        item.status === "Paid" ? "#16a34a" : "#dc2626",
+      padding: "6px 12px",
+      borderRadius: "20px",
+      color: "white",
+      fontWeight: "bold",
+    }}
+  >
+    {item.status}
+  </span>
+</td>
+          
+            
+              
+              
 
         <td>
           <a
