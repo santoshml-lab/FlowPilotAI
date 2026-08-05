@@ -15,6 +15,7 @@ import Invoice from "./pages/Invoice";
 import Reports from "./pages/Reports";
 import AIAssistant from "./pages/AIAssistant";
 import Settings from "./pages/Settings";
+import Notifications from "./pages/Notifications";
 
 
 export default function App() {
