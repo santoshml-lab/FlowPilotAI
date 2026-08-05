@@ -1,20 +1,35 @@
 import { useEffect, useState } from "react";
 import { getBusinessAnalytics } from "../services/api";
+import { getDashboard } from "../services/api";
 
 export default function BusinessAnalytics() {
 
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+  revenue: 0,
+  customers: 0,
+  products: 0,
+  stock: 0,
+  low_stock: 0,
+});
 
   useEffect(() => {
     loadAnalytics();
   }, []);
 
   async function loadAnalytics() {
-    const data = await getBusinessAnalytics();
-    setAnalysis(data.analysis);
-    setLoading(false);
+
+  const ai = await getBusinessAnalytics();
+  setAnalysis(ai.analysis);
+
+  const dashboard = await getDashboard();
+  setStats(dashboard);
+
+  setLoading(false);
   }
+    
+    
 
   return (
     <div
@@ -25,6 +40,37 @@ export default function BusinessAnalytics() {
         color: "white",
       }}
     >
+
+      <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+    gap: "20px",
+    marginBottom: "25px",
+  }}
+>
+
+  <div style={cardStyle}>
+    <h3>💰 Revenue</h3>
+    <h1>₹{stats.revenue}</h1>
+  </div>
+
+  <div style={cardStyle}>
+    <h3>👥 Customers</h3>
+    <h1>{stats.customers}</h1>
+  </div>
+
+  <div style={cardStyle}>
+    <h3>📦 Products</h3>
+    <h1>{stats.products}</h1>
+  </div>
+
+  <div style={cardStyle}>
+    <h3>⚠ Low Stock</h3>
+    <h1>{stats.low_stock}</h1>
+  </div>
+
+</div>7
       <h1>📊 AI Business Analytics</h1>
 
       <div
@@ -54,3 +100,9 @@ export default function BusinessAnalytics() {
     </div>
   );
 }
+const cardStyle = {
+  background: "#1e293b",
+  padding: "20px",
+  borderRadius: "15px",
+  textAlign: "center",
+};
