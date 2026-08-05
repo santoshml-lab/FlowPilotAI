@@ -93,6 +93,8 @@ export default function Sidebar({ setPage }) {
 >
   📈 Reports
 </div>
+
+      
         
       
 
