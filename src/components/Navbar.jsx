@@ -10,15 +10,25 @@ export default function Navbar() {
   }, []);
 
   async function loadNotifications() {
-    const res = await fetch(
-      "https://salespilot-l1d3.onrender.com/notifications"
-    );
+  const res = await fetch(
+    "https://salespilot-l1d3.onrender.com/notifications"
+  );
 
-    const data = await res.json();
+  const data = await res.json();
 
-    setNotifications(data);
-    setCount(data.length);
+  console.log(data);   // 👈 Add this
+
+  setNotifications(data);
+  setCount(data.length);
   }
+
+  
+    
+      
+    
+
+    
+  
 
   return (
     <div
