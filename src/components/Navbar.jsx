@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+
 export default function Navbar() {
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    loadNotifications();
+  }, []);
+
+  async function loadNotifications() {
+    const res = await fetch(
+      "https://salespilot-l1d3.onrender.com/notifications"
+    );
+
+    const data = await res.json();
+
+    setCount(data.length);
+  }
+
   return (
     <div
       style={{
@@ -32,9 +51,38 @@ export default function Navbar() {
           }}
         />
 
-        <span style={{ cursor: "pointer" }}>🔔</span>
+        <div
+          style={{
+            position: "relative",
+            cursor: "pointer",
+            fontSize: "24px",
+          }}
+        >
+          🔔
 
-        <span style={{ cursor: "pointer" }}>👤 Admin</span>
+          {count > 0 && (
+            <span
+              style={{
+                position: "absolute",
+                top: "-8px",
+                right: "-8px",
+                background: "red",
+                color: "white",
+                borderRadius: "50%",
+                width: "18px",
+                height: "18px",
+                fontSize: "11px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {count}
+            </span>
+          )}
+        </div>
+
+        <span>👤 Admin</span>
       </div>
     </div>
   );
