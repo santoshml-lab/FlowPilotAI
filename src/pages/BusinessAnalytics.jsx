@@ -37,7 +37,19 @@ export default function BusinessAnalytics() {
           whiteSpace: "pre-wrap",
         }}
       >
-        {loading ? "🤖 Analyzing your business..." : analysis}
+        {loading ? (
+  "🤖 Analyzing your business..."
+) : (
+  <ul>
+    {analysis.split("\n").map((line, index) =>
+      line.trim() ? (
+        <li key={index} style={{ marginBottom: "10px" }}>
+          {line}
+        </li>
+      ) : null
+    )}
+  </ul>
+)}
       </div>
     </div>
   );
