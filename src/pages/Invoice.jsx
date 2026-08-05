@@ -4,6 +4,7 @@ import { getInvoices } from "../services/api";
 export default function Invoice() {
 
   const [invoices, setInvoices] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     loadInvoices();
@@ -22,6 +23,21 @@ export default function Invoice() {
       }}
     >
       <h1>📄 Invoice History</h1>
+
+      <input
+  type="text"
+  placeholder="Search Invoice..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  style={{
+    marginTop: "20px",
+    marginBottom: "20px",
+    padding: "10px",
+    width: "300px",
+    borderRadius: "8px",
+    border: "none",
+  }}
+/>
 
       <table
         style={{
@@ -43,7 +59,7 @@ export default function Invoice() {
 
         <tbody>
 
-          {invoices.map((item) => (
+          
 
             <tr key={item.id}>
 
