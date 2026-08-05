@@ -19,3 +19,4 @@ export async function getSalesForecast() {
   const res = await fetch(`${API}/sales-forecast`);
   return await res.json();
 }
+
