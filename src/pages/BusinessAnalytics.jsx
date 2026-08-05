@@ -9,6 +9,7 @@ export default function BusinessAnalytics() {
   const [loading, setLoading] = useState(true);
 
   const [health] = useState(92);
+  const [health, setHealth] = useState(0);
 
   const [stats, setStats] = useState({
     revenue: 0,
@@ -26,6 +27,7 @@ export default function BusinessAnalytics() {
     try {
       const ai = await getBusinessAnalytics();
       setAnalysis(ai.analysis);
+      setHealth(ai.health);
 
       const dashboard = await getDashboard();
       setStats(dashboard);
@@ -64,14 +66,25 @@ export default function BusinessAnalytics() {
         <h1
           style={{
             fontSize: "60px",
-            color: "#22c55e",
+            color:
+  health >= 80
+    ? "#22c55e"
+    : health >= 50
+    ? "#facc15"
+    : "#ef4444",
             margin: "15px 0",
           }}
         >
           {health}%
         </h1>
 
-        <h3>Excellent</h3>
+        <h3>
+  {health >= 80
+    ? "Excellent"
+    : health >= 50
+    ? "Good"
+    : "Needs Improvement"}
+</h3>
       </div>
 
       {/* KPI Cards */}
