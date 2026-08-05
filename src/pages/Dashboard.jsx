@@ -12,6 +12,7 @@ import LowStock from "../components/dashboard/LowStock";
 import BestCustomer from "../components/dashboard/BestCustomer";
 import TopProduct from "../components/dashboard/TopProduct";
 import NotificationBell from "../components/dashboard/NotificationBell";
+import SalesForecast from "../components/dashboard/SalesForecast";
 
 
 export default function Dashboard() {
@@ -206,6 +207,7 @@ loadSettings();
       </div>
 
       <AIInsights />
+      <SalesForecast />
       
   
 
