@@ -31,6 +31,9 @@ export default function AIAssistant() {
 );
 
 const data = await res.json();
+console.log(data);
+alert(JSON.stringify(data));      
+      
 
 setMessages((prev) => [
   ...prev,
