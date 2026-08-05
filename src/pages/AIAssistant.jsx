@@ -2,7 +2,8 @@ import Card from "../components/ui/Card";
 import { useState } from "react";
 
 export default function AIAssistant() {
-  const API_URL = "https://salespilot-l1d3.onrender.com/chat";
+  const API_URL = "https://salespilot-l1d3.onrender.com/business-chat";
+  
 
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
