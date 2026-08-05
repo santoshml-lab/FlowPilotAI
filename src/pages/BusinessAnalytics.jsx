@@ -8,7 +8,7 @@ export default function BusinessAnalytics() {
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const [health] = useState(92);
+  
   const [health, setHealth] = useState(0);
 
   const [stats, setStats] = useState({
