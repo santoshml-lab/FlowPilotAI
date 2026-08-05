@@ -15,3 +15,7 @@ export async function getInvoices() {
   const response = await fetch(`${API}/invoices`);
   return await response.json();
 }
+export async function getSalesForecast() {
+  const res = await fetch(`${API}/sales-forecast`);
+  return await res.json();
+}
