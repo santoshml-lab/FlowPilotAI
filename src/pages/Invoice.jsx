@@ -123,12 +123,24 @@ export default function Invoice() {
         </td>
         <td>
   <a
-    href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
-    target="_blank"
-    rel="noreferrer"
-  >
-    👀 View
-  </a>
+  href={`https://salespilot-l1d3.onrender.com/invoice/${item.invoice_no}`}
+  target="_blank"
+  rel="noreferrer"
+  style={{
+    background: "#2563eb",
+    color: "white",
+    padding: "8px 12px",
+    borderRadius: "8px",
+    textDecoration: "none",
+  }}
+>
+  👀 View
+</a>
+    
+    
+
+    
+  
 </td>
 
       </tr>
