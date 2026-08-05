@@ -58,14 +58,16 @@ export default function App() {
   return <Sales />;
         case "invoice":
   return <Invoice />;
+        case "notifications":
+  return <Notifications />;
         case "reports":
   return <Reports />;
         case "ai":
   return <AIAssistant />;
         case "settings":
   return <Settings />;
-        case "notifications":
-  return <Notifications />;
+        
+  
         
 
       default:
