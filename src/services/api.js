@@ -39,4 +39,8 @@ export async function getBusinessAnalytics() {
   return await response.json();
 
 }
+export async function getRevenueChart() {
+  const response = await fetch(`${API}/revenue-chart`);
+  return await response.json();
+}
   
