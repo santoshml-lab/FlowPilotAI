@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import RevenueChart from "../components/dashboard/RevenueChart";
+import TopProductsChart from "../components/dashboard/TopProductsChart";
 import {
   getBusinessAnalytics,
   getDashboard,
@@ -119,6 +120,7 @@ export default function BusinessAnalytics() {
         </div>
       </div>
       <RevenueChart />
+      <TopProductsChart />
 
       {/* AI Analysis */}
 
