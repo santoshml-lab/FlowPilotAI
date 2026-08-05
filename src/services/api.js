@@ -29,4 +29,14 @@ export async function askBusinessAI(question) {
   return await response.json();
 
 }
+
+export async function getBusinessAnalytics() {
+
+  const response = await fetch(
+    `${API}/business-analytics`
+  );
+
+  return await response.json();
+
+}
   
