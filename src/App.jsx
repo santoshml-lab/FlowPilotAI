@@ -16,6 +16,7 @@ import Reports from "./pages/Reports";
 import AIAssistant from "./pages/AIAssistant";
 import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
+import BusinessAI from "./pages/BusinessAI";
 
 
 export default function App() {
@@ -63,6 +64,8 @@ export default function App() {
   return <Notifications />;
         case "reports":
   return <Reports />;
+        case "businessAI":
+  return <BusinessAI />;
         case "ai":
   return <AIAssistant />;
         case "settings":
