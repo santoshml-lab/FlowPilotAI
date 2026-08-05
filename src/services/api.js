@@ -19,4 +19,14 @@ export async function getSalesForecast() {
   const res = await fetch(`${API}/sales-forecast`);
   return await res.json();
 } 
+
+export async function askBusinessAI(question) {
+
+  const response = await fetch(
+    `${API}/business-chat?question=${encodeURIComponent(question)}`
+  );
+
+  return await response.json();
+
+}
   
