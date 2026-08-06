@@ -6,22 +6,18 @@ export default function Login({ onLogin, goSignup }) {
   const [password, setPassword] = useState("");
 
   async function login() {
+  alert("login() function started");
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
-
-  if (error) {
-    alert(error.message);
-    return;
+  alert(JSON.stringify(error));
   }
-
-  alert("Login Success");
-  onLogin();
-  }
+  
+    
+    
   
     
       
@@ -76,15 +72,18 @@ export default function Login({ onLogin, goSignup }) {
         />
 
         <button
-          onClick={login}
-          style={{
-            width:"100%",
-            padding:"12px",
-            marginTop:"20px"
-          }}
-        >
-          Login
-        </button>
+  onClick={() => {
+    alert("Button Clicked");
+    login();
+  }}
+>
+  Login
+</button>
+          
+          
+
+            
+        
 
         <p
           style={{
