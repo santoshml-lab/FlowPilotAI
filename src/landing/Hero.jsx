@@ -48,18 +48,22 @@ export default function Hero() {
           }}
         >
           <button
-            style={{
-              background: "#2563eb",
-              color: "white",
-              padding: "15px 30px",
-              borderRadius: "12px",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "18px",
-            }}
-          >
-            🚀 Start Free Trial
-          </button>
+  onClick={() => navigate("/login")}
+  style={{
+    background: "#2563eb",
+    color: "white",
+    padding: "15px 30px",
+    borderRadius: "12px",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "18px",
+  }}
+>
+  🚀 Start Free Trial
+</button>
+            
+              
+         
 
           <button
             style={{
