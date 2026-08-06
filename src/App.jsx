@@ -21,6 +21,8 @@ import BusinessAnalytics from "./pages/BusinessAnalytics";
 import { useTheme } from "./context/ThemeContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { useEffect } from "react";
+import { supabase } from "./lib/supabase";
 
 
 export default function App() {
@@ -28,6 +30,27 @@ export default function App() {
   const [editingProduct, setEditingProduct] = useState(null);
   const { dark } = useTheme();
   const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+  async function checkSession() {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    if (session) {
+      setLoggedIn(true);
+    }
+  }
+
+  checkSession();
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((event, session) => {
+    setLoggedIn(!!session);
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
 const [showSignup, setShowSignup] = useState(false);
 
   if (!loggedIn) {
