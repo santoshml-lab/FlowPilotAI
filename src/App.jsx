@@ -19,12 +19,34 @@ import Notifications from "./pages/Notifications";
 import BusinessAI from "./pages/BusinessAI";
 import BusinessAnalytics from "./pages/BusinessAnalytics";
 import { useTheme } from "./context/ThemeContext";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 export default function App() {
   const [page, setPage] = useState("dashboard");
   const [editingProduct, setEditingProduct] = useState(null);
   const { dark } = useTheme();
+  const [loggedIn, setLoggedIn] = useState(false);
+const [showSignup, setShowSignup] = useState(false);
+
+  if (!loggedIn) {
+
+  if (showSignup) {
+    return (
+      <Signup
+        goLogin={() => setShowSignup(false)}
+      />
+    );
+  }
+
+  return (
+    <Login
+      onLogin={() => setLoggedIn(true)}
+      goSignup={() => setShowSignup(true)}
+    />
+  );
+  }
 
   function renderPage() {
     switch (page) {
