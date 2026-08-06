@@ -18,11 +18,13 @@ import Settings from "./pages/Settings";
 import Notifications from "./pages/Notifications";
 import BusinessAI from "./pages/BusinessAI";
 import BusinessAnalytics from "./pages/BusinessAnalytics";
+import { useTheme } from "./context/ThemeContext";
 
 
 export default function App() {
   const [page, setPage] = useState("dashboard");
   const [editingProduct, setEditingProduct] = useState(null);
+  const { dark } = useTheme();
 
   function renderPage() {
     switch (page) {
@@ -84,11 +86,17 @@ export default function App() {
 
   return (
     <div
-      style={{
-        display: "flex",
-        background: "#0f172a",
-      }}
-    >
+  style={{
+    background: dark ? "#0f172a" : "#f8fafc",
+    color: dark ? "white" : "#111827",
+    minHeight: "100vh",
+  }}
+>
+      
+        
+        
+      
+    
       <Sidebar setPage={setPage} />
 
       <div
