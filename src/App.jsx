@@ -23,6 +23,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useEffect } from "react";
 import { supabase } from "./lib/supabase";
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./landing/LandingPage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 
 export default function App() {
