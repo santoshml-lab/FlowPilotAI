@@ -3,6 +3,7 @@ import Hero from "./Hero";
 import Features from "./Features";
 import DashboardPreview from "./DashboardPreview";
 import Pricing from "./Pricing";
+import Testimonials from "./Testimonials";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <Features />
        <DashboardPreview />
       <Pricing />
+      <Testimonials />
     </>
   );
 }
