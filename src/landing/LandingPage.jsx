@@ -2,6 +2,7 @@ import LandingNavbar from "./Navbar";
 import Hero from "./Hero";
 import Features from "./Features";
 import DashboardPreview from "./DashboardPreview";
+import Pricing from "./Pricing";
 
 export default function LandingPage() {
   return (
@@ -10,6 +11,7 @@ export default function LandingPage() {
       <Hero />
       <Features />
        <DashboardPreview />
+      <Pricing />
     </>
   );
 }
