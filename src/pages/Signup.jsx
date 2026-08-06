@@ -19,7 +19,7 @@ export default function Signup({ goLogin }) {
   });
 
   if (error) {
-    alert(error.message);
+    
     return;
   }
 
