@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 export default function Signup({ goLogin }) {
 
@@ -6,13 +7,30 @@ export default function Signup({ goLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function signup() {
+  async function signup() {
+  const { error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        full_name: name,
+      },
+    },
+  });
 
-    alert("Account Created Successfully!");
-
-    goLogin();
-
+  if (error) {
+    alert(error.message);
+    return;
   }
+
+  alert("Account created successfully! Please check your email if confirmation is enabled.");
+
+  goLogin();
+  }
+
+    
+
+  
 
   return (
     <div
