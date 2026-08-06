@@ -1,61 +1,83 @@
+import { useTheme } from "../context/ThemeContext";
 export default function Sidebar({ setPage }) {
+  const { dark } = useTheme();
+  
 
   
   return (
     <div
       style={{
-        width: "260px",
-        background: "#111827",
-        color: "white",
-        height: "100vh",
-        padding: "25px",
-        position: "fixed",
-        left: 0,
-        top: 0,
-      }}
+  width: "260px",
+  background: dark ? "#111827" : "#ffffff",
+  color: dark ? "white" : "#111827",
+  height: "100vh",
+  padding: "25px",
+  position: "fixed",
+  left: 0,
+  top: 0,
+  borderRight: dark
+    ? "1px solid #1f2937"
+    : "1px solid #e5e7eb",
+  transition: "0.3s",
+}}
+        
+        
+        
+        
+        
+        
+      
     >
       <h2
-  style={{
-    marginBottom: "40px",
-    fontSize: "28px",
-    color: "#60a5fa",
-    fontWeight: "700",
-  }}
+  const menuStyle = (dark) => ({
+  padding: "14px 18px",
+  marginBottom: "12px",
+  borderRadius: "14px",
+  cursor: "pointer",
+  background: dark ? "#1e293b" : "#f3f4f6",
+  color: dark ? "white" : "#111827",
+  transition: "0.3s",
+  fontWeight: "600",
+  fontSize: "15px",
+  border: dark
+    ? "1px solid #334155"
+    : "1px solid #d1d5db",
+});
+    
+          
+  
 >
   🚀 FlowPilot AI
 </h2>
         
       
 
-      <div style={menuStyle} onClick={() => setPage("dashboard")}>
+      <div style={menuStyle(dark)} onClick={() => setPage("dashboard")}>
         🏠 Dashboard
       </div>
 
-      <div style={menuStyle} onClick={() => setPage("customers")}>
+      <div style={menuStyle(dark)} onClick={() => setPage("customers")}>
         👥 Customers
       </div>
 
-      <div style={menuStyle} onClick={() => setPage("addCustomer")}>
+      <div style={menuStyle(dark)} onClick={() => setPage("addCustomer")}>
         ➕ Add Customer
       </div>
 
-      <div style={menuStyle} onClick={() => setPage("products")}>
+      <div style={menuStyle(dark)} onClick={() => setPage("products")}>
         📦 Products
       </div>
 
-      <div style={menuStyle} onClick={() => setPage("addProduct")}>
-        ➕ Add Product
-      </div>
-
+      
+        
+      
       <div
-  style={menuStyle}
-  onClick={() => setPage("inventory")}
+  style={menuStyle(dark)}  onClick={() => setPage("inventory")}
 >
   📋 Inventory
 </div>
       <div
-  style={menuStyle}
-  onClick={() => setPage("inventoryHistory")}
+  style={menuStyle(dark)} onClick={() => setPage("inventoryHistory")}
 >
   📜 Inventory History
 </div>
@@ -66,7 +88,7 @@ export default function Sidebar({ setPage }) {
       
 
       <div
-  style={menuStyle}
+  style={menuStyle(dark)}
   onClick={() => setPage("sales")}
 >
   💰 Sales
@@ -75,7 +97,7 @@ export default function Sidebar({ setPage }) {
       
 
       <div
-  style={menuStyle}
+  style={menuStyle(dark)}
   onClick={() => setPage("invoice")}
 >
   🧾 Invoice
@@ -83,18 +105,17 @@ export default function Sidebar({ setPage }) {
         
       
 
-      <div style={menuStyle}>
-        💸 Expenses
-      </div>
+              
+      
 
       <div
-  style={menuStyle}
+  style={menuStyle(dark)}
   onClick={() => setPage("reports")}
 >
   📈 Reports
 </div>
       <div
-  style={menuStyle}
+  style={menuStyle(dark)}
   onClick={() => setPage("businessAnalytics")}
 >
   📊 AI Analytics
@@ -105,7 +126,7 @@ export default function Sidebar({ setPage }) {
       
 
       <div
-  style={menuStyle}
+  style={menuStyle(dark)}
   onClick={() => setPage("ai")}
 >
   🤖 AI Assistant
@@ -114,8 +135,7 @@ export default function Sidebar({ setPage }) {
       
 
       <div
-  style={menuStyle}
-  onClick={() => setPage("settings")}
+  style={menuStyle(dark)} onClick={() => setPage("settings")}
 >
   ⚙ Settings
 </div>
