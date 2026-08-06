@@ -28,27 +28,28 @@ export default function Sidebar({ setPage }) {
         
       
     >
-      <h2
-  const menuStyle = (dark) => ({
-  padding: "14px 18px",
-  marginBottom: "12px",
-  borderRadius: "14px",
-  cursor: "pointer",
-  background: dark ? "#1e293b" : "#f3f4f6",
-  color: dark ? "white" : "#111827",
-  transition: "0.3s",
-  fontWeight: "600",
-  fontSize: "15px",
-  border: dark
-    ? "1px solid #334155"
-    : "1px solid #d1d5db",
-});
-    
-          
-  
+      
+  <h2
+  style={{
+    marginBottom: "40px",
+    fontSize: "28px",
+    color: dark ? "#60a5fa" : "#2563eb",
+    fontWeight: "700",
+  }}
 >
   🚀 FlowPilot AI
 </h2>
+  
+  
+  
+  
+  
+    
+          
+  
+
+  
+
         
       
 
@@ -145,17 +146,25 @@ export default function Sidebar({ setPage }) {
   );
 }
 
-const menuStyle = {
+const menuStyle = (dark) => ({
   padding: "14px 18px",
   marginBottom: "12px",
   borderRadius: "14px",
   cursor: "pointer",
-  background: "#1e293b",
+  background: dark ? "#1e293b" : "#f3f4f6",
+  color: dark ? "white" : "#111827",
   transition: "0.3s",
   fontWeight: "600",
   fontSize: "15px",
-  border: "1px solid #334155",
-};
+  border: dark
+    ? "1px solid #334155"
+    : "1px solid #d1d5db",
+});
+  
+  
+  
+  
+
   
   
   
