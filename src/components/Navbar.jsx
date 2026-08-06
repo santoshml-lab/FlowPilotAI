@@ -20,7 +20,7 @@ export default function Navbar() {
 
   const data = await res.json();
 
-  console.log(data);   // 👈 Add this
+  console.log(data);   
 
   setNotifications(data);
   setCount(data.length);
