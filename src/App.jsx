@@ -47,6 +47,7 @@ const [showSignup, setShowSignup] = useState(false);
     />
   );
   }
+  
 
   function renderPage() {
     switch (page) {
