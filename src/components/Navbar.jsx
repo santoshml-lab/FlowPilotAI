@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Navbar() {
   const [count, setCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
+  const { dark, toggleTheme } = useTheme();
 
   useEffect(() => {
     loadNotifications();
