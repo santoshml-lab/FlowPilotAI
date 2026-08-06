@@ -5,18 +5,24 @@ export default function Login({ onLogin, goSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function login() {
+  async function login() {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
 
-    if (
-      email === "admin@flowpilot.com" &&
-      password === "admin123"
-    ) {
-      onLogin();
-    } else {
-      alert("Invalid Email or Password");
-    }
-
+  if (error) {
+    alert(error.message);
+    return;
   }
+
+  onLogin();
+  }
+    
+      
+    
+
+  
 
   return (
     <div
