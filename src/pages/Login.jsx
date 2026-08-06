@@ -9,15 +9,23 @@ export default function Login({ onLogin, goSignup }) {
   const navigate = useNavigate();
 
   async function login() {
-  
 
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  
+  if (error) {
+    alert(error.message);
+    return;
   }
+
+  onLogin();
+  navigate("/dashboard");
+  }
+  
+
+  
   
     
     
@@ -74,14 +82,12 @@ export default function Login({ onLogin, goSignup }) {
           }}
         />
 
-        <button
-  onClick={() => {
-    
-    login();
-  }}
->
+        <button onClick={login}>
   Login
 </button>
+  
+    
+    
           
           
 
