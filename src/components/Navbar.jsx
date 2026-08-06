@@ -74,6 +74,18 @@ export default function Navbar() {
             }}
           >
             🔔
+            <button
+  onClick={toggleTheme}
+  style={{
+    background: "transparent",
+    border: "none",
+    fontSize: "24px",
+    cursor: "pointer",
+    color: dark ? "white" : "#111827",
+  }}
+>
+  {dark ? "🌙" : "☀️"}
+</button>
 
             {count > 0 && (
               <span
