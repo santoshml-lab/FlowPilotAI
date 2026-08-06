@@ -7,14 +7,14 @@ export default function Login({ onLogin, goSignup }) {
   const [password, setPassword] = useState("");
 
   async function login() {
-  alert("login() function started");
+  
 
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
-  alert(JSON.stringify(error));
+  
   }
   
     
@@ -74,7 +74,7 @@ export default function Login({ onLogin, goSignup }) {
 
         <button
   onClick={() => {
-    alert("Button Clicked");
+    
     login();
   }}
 >
