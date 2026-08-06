@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import { supabase } from "../lib/supabase";
+
 
 export default function Navbar() {
   const [count, setCount] = useState(0);
@@ -23,6 +25,12 @@ export default function Navbar() {
   setNotifications(data);
   setCount(data.length);
   }
+
+  
+async function logout() {
+  await supabase.auth.signOut();
+  window.location.reload();
+}
 
   
     
@@ -85,6 +93,9 @@ export default function Navbar() {
   }}
 >
   {dark ? "🌙" : "☀️"}
+</button>
+            <button onClick={logout}>
+  🚪 Logout
 </button>
 
             {count > 0 && (
