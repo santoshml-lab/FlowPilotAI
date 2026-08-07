@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { supabase } from "../lib/supabase";
+const [profileOpen, setProfileOpen] = useState(false);
 
 
 export default function Navbar() {
