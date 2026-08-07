@@ -159,7 +159,7 @@ export default function App() {
                   width: "calc(100% - 260px)",
                 }}
               >
-                <Navbar />
+                <Navbar setPage={setPage} />
                 {renderPage()}
               </div>
             </div>
