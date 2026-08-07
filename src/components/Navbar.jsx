@@ -8,10 +8,14 @@ export default function Navbar() {
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
   const { dark, toggleTheme } = useTheme();
+  const [profilePic, setProfilePic] = useState("");
 
   useEffect(() => {
-    loadNotifications();
-  }, []);
+  loadNotifications();
+  loadProfile();
+}, []);
+    
+  
 
   async function loadNotifications() {
   const res = await fetch(
@@ -31,6 +35,24 @@ async function logout() {
   await supabase.auth.signOut();
   window.location.reload();
 }
+
+  async function loadProfile() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { data } = await supabase
+    .from("profiles")
+    .select("avatar_url")
+    .eq("id", user.id)
+    .single();
+
+  if (data?.avatar_url) {
+    setProfilePic(data.avatar_url);
+  }
+  }
 
   
     
@@ -167,7 +189,30 @@ async function logout() {
           )}
         </div>
 
-        <span>👤 Admin</span>
+        <div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  }}
+>
+  <img
+    src={
+      profilePic ||
+      "https://ui-avatars.com/api/?name=Admin"
+    }
+    alt="Profile"
+    style={{
+      width: "40px",
+      height: "40px",
+      borderRadius: "50%",
+      objectFit: "cover",
+      border: "2px solid #38bdf8",
+    }}
+  />
+
+  <span>Admin</span>
+</div>
       </div>
     </div>
   );
