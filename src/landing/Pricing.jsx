@@ -1,35 +1,33 @@
 export default function Pricing() {
   const plans = [
     {
-      title: "Starter",
-      price: "Free",
+      name: "Starter",
+      price: "₹499",
       features: [
         "Dashboard",
         "Customers",
         "Inventory",
-        "AI Assistant",
+        "Email Support",
       ],
     },
     {
-      title: "Professional ⭐",
-      price: "₹999 / month",
+      name: "Professional",
+      price: "₹999",
       features: [
         "Everything in Starter",
-        "AI Analytics",
-        "Invoices",
+        "AI Assistant",
+        "Business Analytics",
         "Reports",
-        "Unlimited Customers",
-        "Priority Support",
       ],
     },
     {
-      title: "Enterprise",
-      price: "Contact Us",
+      name: "Enterprise",
+      price: "Custom",
       features: [
-        "Unlimited Everything",
+        "Unlimited Users",
         "Custom AI",
-        "Dedicated Manager",
-        "24×7 Support",
+        "Priority Support",
+        "API Access",
       ],
     },
   ];
@@ -37,7 +35,7 @@ export default function Pricing() {
   return (
     <section
       style={{
-        padding: "90px 60px",
+        padding: "90px 80px",
         background: "#f8fafc",
       }}
     >
@@ -48,14 +46,14 @@ export default function Pricing() {
           marginBottom: "50px",
         }}
       >
-        Pricing
+        Pricing Plans
       </h1>
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-          gap: "25px",
+          gridTemplateColumns: "repeat(3,1fr)",
+          gap: "30px",
         }}
       >
         {plans.map((plan, index) => (
@@ -63,43 +61,35 @@ export default function Pricing() {
             key={index}
             style={{
               background: "white",
-              padding: "35px",
               borderRadius: "20px",
-              boxShadow: "0 15px 35px rgba(0,0,0,.1)",
-              border:
-                plan.title.includes("Professional")
-                  ? "3px solid #2563eb"
-                  : "1px solid #e5e7eb",
+              padding: "30px",
+              boxShadow: "0 10px 25px rgba(0,0,0,.08)",
+              textAlign: "center",
             }}
           >
-            <h2>{plan.title}</h2>
+            <h2>{plan.name}</h2>
 
             <h1
               style={{
                 color: "#2563eb",
-                marginTop: "15px",
+                margin: "20px 0",
               }}
             >
               {plan.price}
             </h1>
 
-            <ul style={{ marginTop: "25px" }}>
-              {plan.features.map((item, i) => (
-                <li key={i} style={{ marginBottom: "12px" }}>
-                  ✅ {item}
-                </li>
-              ))}
-            </ul>
+            {plan.features.map((feature, i) => (
+              <p key={i}>✅ {feature}</p>
+            ))}
 
             <button
               style={{
-                marginTop: "25px",
-                width: "100%",
-                padding: "14px",
+                marginTop: "20px",
                 background: "#2563eb",
                 color: "white",
                 border: "none",
-                borderRadius: "12px",
+                padding: "12px 25px",
+                borderRadius: "10px",
                 cursor: "pointer",
               }}
             >
