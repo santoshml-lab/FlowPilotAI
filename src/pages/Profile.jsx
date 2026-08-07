@@ -8,13 +8,10 @@ export default function Profile() {
     phone: "",
     address: "",
   });
-  const [profile, setProfile] = useState({
-  full_name: "",
-  company: "",
-  phone: "",
-  address: "",
-  avatar_url: "",
-});
+  
+  
+  
+
 
   useEffect(() => {
     loadProfile();
