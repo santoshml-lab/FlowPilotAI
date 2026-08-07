@@ -189,13 +189,15 @@ async function logout() {
             </div>
           )}
         </div>
-
         <div
   style={{
+    position: "relative",
     display: "flex",
     alignItems: "center",
     gap: "10px",
+    cursor: "pointer",
   }}
+  onClick={() => setProfileOpen(!profileOpen)}
 >
   <img
     src={
@@ -204,16 +206,96 @@ async function logout() {
     }
     alt="Profile"
     style={{
-      width: "40px",
-      height: "40px",
+      width: "42px",
+      height: "42px",
       borderRadius: "50%",
       objectFit: "cover",
       border: "2px solid #38bdf8",
     }}
   />
 
-  <span>Admin</span>
+  <span>Admin ▼</span>
+
+  {profileOpen && (
+    <div
+      style={{
+        position: "absolute",
+        top: "60px",
+        right: 0,
+        width: "220px",
+        background: "#1e293b",
+        borderRadius: "12px",
+        boxShadow: "0 10px 30px rgba(0,0,0,.4)",
+        overflow: "hidden",
+        zIndex: 1000,
+      }}
+    >
+      <div
+        style={{
+          padding: "15px",
+          borderBottom: "1px solid #334155",
+          fontWeight: "bold",
+        }}
+      >
+        👤 Admin
+      </div>
+
+      <div
+        style={{
+          padding: "12px 15px",
+          cursor: "pointer",
+        }}
+      >
+        👤 My Profile
+      </div>
+
+      <div
+        style={{
+          padding: "12px 15px",
+          cursor: "pointer",
+        }}
+      >
+        ⚙️ Settings
+      </div>
+
+      <div
+        style={{
+          padding: "12px 15px",
+          cursor: "pointer",
+        }}
+        onClick={toggleTheme}
+      >
+        {dark ? "☀️ Light Mode" : "🌙 Dark Mode"}
+      </div>
+
+      <div
+        style={{
+          padding: "12px 15px",
+          color: "#ef4444",
+          cursor: "pointer",
+        }}
+        onClick={logout}
+      >
+        🚪 Logout
+      </div>
+    </div>
+  )}
 </div>
+
+        
+  
+    
+    
+    
+  
+
+  
+      
+    
+  
+
+  
+
       </div>
     </div>
   );
