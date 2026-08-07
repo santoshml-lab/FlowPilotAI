@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabase";
 
 
 
-export default function Navbar() {
+export default function Navbar({ setPage }) {
   const [count, setCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
@@ -245,22 +245,44 @@ async function logout() {
       </div>
 
       <div
-        style={{
-          padding: "12px 15px",
-          cursor: "pointer",
-        }}
-      >
-        👤 My Profile
-      </div>
+  style={{
+    padding: "12px 15px",
+    cursor: "pointer",
+  }}
+  onClick={() => {
+    setPage("profile");
+    setProfileOpen(false);
+  }}
+>
+  👤 My Profile
+</div>
+        
+          
+          
+        
+      
+        
+      
 
       <div
-        style={{
-          padding: "12px 15px",
-          cursor: "pointer",
-        }}
-      >
-        ⚙️ Settings
-      </div>
+  style={{
+    padding: "12px 15px",
+    cursor: "pointer",
+  }}
+  onClick={() => {
+    setPage("settings");
+    setProfileOpen(false);
+  }}
+>
+  ⚙️ Settings
+</div>
+        
+          
+          
+        
+      
+        
+      
 
       <div
         style={{
