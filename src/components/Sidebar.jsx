@@ -132,6 +132,12 @@ export default function Sidebar({ setPage }) {
 >
   🤖 AI Assistant
 </div>
+      <div
+  style={menuStyle(dark)}
+  onClick={() => setPage("profile")}
+>
+  👤 Profile
+</div>
         
       
 
