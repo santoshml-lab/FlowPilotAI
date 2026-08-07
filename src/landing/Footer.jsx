@@ -2,79 +2,19 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "#0f172a",
-        color: "white",
-        padding: "60px 40px 30px",
+        background: "#020617",
+        color: "#94a3b8",
+        padding: "30px",
+        textAlign: "center",
       }}
     >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
-          gap: "30px",
-        }}
-      >
-        <div>
-          <img
-            src="/logo.png"
-            alt="FlowPilot AI"
-            style={{
-              width: "170px",
-              marginBottom: "20px",
-            }}
-          />
+      <h2 style={{ color: "white" }}>🚀 FlowPilot AI</h2>
 
-          <p
-            style={{
-              color: "#cbd5e1",
-              lineHeight: "1.8",
-            }}
-          >
-            Smart Flow. Better Growth.
-            <br />
-            AI-powered CRM, Inventory,
-            Analytics & Business Automation.
-          </p>
-        </div>
+      <p style={{ marginTop: "10px" }}>
+        Smart CRM • Inventory • Sales • AI Assistant
+      </p>
 
-        <div>
-          <h3>Product</h3>
-          <p>Dashboard</p>
-          <p>AI Analytics</p>
-          <p>Reports</p>
-          <p>Invoices</p>
-        </div>
-
-        <div>
-          <h3>Company</h3>
-          <p>About</p>
-          <p>Pricing</p>
-          <p>Contact</p>
-          <p>Blog</p>
-        </div>
-
-        <div>
-          <h3>Support</h3>
-          <p>Help Center</p>
-          <p>Privacy Policy</p>
-          <p>Terms</p>
-          <p>Email</p>
-        </div>
-      </div>
-
-      <hr
-        style={{
-          margin: "35px 0",
-          border: "1px solid #334155",
-        }}
-      />
-
-      <p
-        style={{
-          textAlign: "center",
-          color: "#94a3b8",
-        }}
-      >
+      <p style={{ marginTop: "20px" }}>
         © 2026 FlowPilot AI. All Rights Reserved.
       </p>
     </footer>
