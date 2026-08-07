@@ -1,35 +1,4 @@
-const features = [
-  {
-    icon: "🤖",
-    title: "AI Business Assistant",
-    desc: "Get instant AI-powered business advice and recommendations.",
-  },
-  {
-    icon: "📊",
-    title: "Business Analytics",
-    desc: "Track revenue, customers, growth and performance in real time.",
-  },
-  {
-    icon: "👥",
-    title: "Customer CRM",
-    desc: "Manage customers with complete profiles and history.",
-  },
-  {
-    icon: "📦",
-    title: "Inventory",
-    desc: "Track products, stock and low inventory alerts.",
-  },
-  {
-    icon: "💰",
-    title: "Sales Tracking",
-    desc: "Monitor sales, orders and business growth effortlessly.",
-  },
-  {
-    icon: "🧾",
-    title: "Smart Invoices",
-    desc: "Generate beautiful invoices instantly with one click.",
-  },
-];
+
 
 export default function Features() {
   const features = [
