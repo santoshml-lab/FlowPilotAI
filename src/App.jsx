@@ -27,6 +27,7 @@ import BusinessAI from "./pages/BusinessAI";
 import BusinessAnalytics from "./pages/BusinessAnalytics";
 import AIAssistant from "./pages/AIAssistant";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const { dark } = useTheme();
@@ -109,6 +110,8 @@ export default function App() {
 
       case "settings":
         return <Settings />;
+        case "profile":
+        return <Profile />;
 
       default:
         return <Dashboard />;
