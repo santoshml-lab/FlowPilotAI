@@ -24,6 +24,7 @@ export default function Dashboard() {
   low_stock: 0,
 });
   const [settings, setSettings] = useState({});
+  const [userName, setUserName] = useState("User");
   useEffect(() => {
 
   async function loadData() {
@@ -50,6 +51,32 @@ export default function Dashboard() {
 loadSettings();
 
 }, []);
+
+  async function loadUser() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) return;
+
+  const { data } = await supabase
+    .from("profiles")
+    .select("full_name")
+    .eq("id", user.id)
+    .single();
+
+  if (data?.full_name) {
+    setUserName(data.full_name);
+  }
+}
+
+loadUser();
+  const hour = new Date().getHours();
+
+let greeting = "Good Evening 🌙";
+
+if (hour < 12) greeting = "Good Morning ☀️";
+else if (hour < 17) greeting = "Good Afternoon 🌤️";
   
   return (
     <div
@@ -91,24 +118,49 @@ loadSettings();
     </p>
   </div>
 </div>
-      <h1
-        style={{
-          fontSize: "38px",
-          fontWeight: "700",
-          marginBottom: "8px",
-        }}
-      >
-        Welcome Back 👋
-      </h1>
+      <div
+  style={{
+    background: "#1e293b",
+    padding: "25px",
+    borderRadius: "18px",
+    marginTop: "20px",
+    marginBottom: "20px",
+    boxShadow: "0 10px 30px rgba(0,0,0,.25)",
+  }}
+>
+  <h1
+    style={{
+      fontSize: "36px",
+      margin: 0,
+    }}
+  >
+    👋 Welcome Back, {userName}
+  </h1>
 
-      <p
-        style={{
-          color: "#94a3b8",
-          fontSize: "18px",
-        }}
-      >
-        Here's what's happening with your business today.
-      </p>
+  <p
+    style={{
+      color: "#94a3b8",
+      fontSize: "18px",
+      marginTop: "10px",
+    }}
+  >
+    {greeting}
+  </p>
+
+  <p
+    style={{
+      color: "#38bdf8",
+      marginTop: "12px",
+      fontSize: "16px",
+    }}
+  >
+    🚀 Keep growing your business today!
+  </p>
+</div>
+        
+          
+          
+          
 
       {/* KPI Cards */}
 
