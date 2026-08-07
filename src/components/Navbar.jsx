@@ -8,9 +8,12 @@ export default function Navbar() {
   const [count, setCount] = useState(0);
   const [notifications, setNotifications] = useState([]);
   const [open, setOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const { dark, toggleTheme } = useTheme();
   const [profilePic, setProfilePic] = useState("");
-
+  
+  
+  
   useEffect(() => {
   loadNotifications();
   loadProfile();
