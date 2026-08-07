@@ -13,9 +13,8 @@ export default function LandingPage() {
       <LandingNavbar />
       <Hero />
       <Features />
-      <Hero />
-<Features />
-<Stats />
+
+       <Stats />
        <DashboardPreview />
       <Pricing />
       <Testimonials />
