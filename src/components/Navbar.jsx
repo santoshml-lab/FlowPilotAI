@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { supabase } from "../lib/supabase";
-const [profileOpen, setProfileOpen] = useState(false);
+
 
 
 export default function Navbar() {
@@ -117,9 +117,9 @@ async function logout() {
 >
   {dark ? "🌙" : "☀️"}
 </button>
-            <button onClick={logout}>
-  🚪 Logout
-</button>
+            
+  
+
 
             {count > 0 && (
               <span
