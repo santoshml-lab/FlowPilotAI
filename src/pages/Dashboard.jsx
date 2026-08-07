@@ -156,6 +156,79 @@ else if (hour < 17) greeting = "Good Afternoon 🌤️";
   >
     🚀 Keep growing your business today!
   </p>
+        <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(4,1fr)",
+    gap: "20px",
+    marginTop: "25px",
+    marginBottom: "30px",
+  }}
+>
+  <div
+    style={{
+      background: "#1e293b",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <h4 style={{ color: "#94a3b8", margin: 0 }}>
+      💰 Today's Revenue
+    </h4>
+
+    <h2 style={{ color: "#22c55e" }}>
+      ₹{stats.revenue}
+    </h2>
+  </div>
+
+  <div
+    style={{
+      background: "#1e293b",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <h4 style={{ color: "#94a3b8", margin: 0 }}>
+      👥 Customers
+    </h4>
+
+    <h2 style={{ color: "#38bdf8" }}>
+      {stats.customers}
+    </h2>
+  </div>
+
+  <div
+    style={{
+      background: "#1e293b",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <h4 style={{ color: "#94a3b8", margin: 0 }}>
+      📦 Products
+    </h4>
+
+    <h2 style={{ color: "#f59e0b" }}>
+      {stats.products}
+    </h2>
+  </div>
+
+  <div
+    style={{
+      background: "#1e293b",
+      padding: "20px",
+      borderRadius: "15px",
+    }}
+  >
+    <h4 style={{ color: "#94a3b8", margin: 0 }}>
+      ⚠ Low Stock
+    </h4>
+
+    <h2 style={{ color: "#ef4444" }}>
+      {stats.low_stock}
+    </h2>
+  </div>
+</div>
 </div>
         
           
