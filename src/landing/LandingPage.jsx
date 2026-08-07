@@ -6,6 +6,8 @@ import Pricing from "./Pricing";
 import Testimonials from "./Testimonials";
 import FAQ from "./FAQ";
 import Stats from "./Stats";
+import Contact from "./Contact";
+import Footer from "./Footer";
 
 export default function LandingPage() {
   return (
@@ -19,7 +21,8 @@ export default function LandingPage() {
       <Pricing />
       <FAQ />
       
-       <DashboardPreview />
+       <Contact />
+      <Footer />
       
       
       
