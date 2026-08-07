@@ -1,31 +1,33 @@
 export default function Testimonials() {
+
   const reviews = [
     {
       name: "Rahul Sharma",
-      company: "Sharma Electronics",
+      company: "TechNova",
       review:
-        "FlowPilot AI transformed our inventory and sales management.",
+        "FlowPilot AI completely transformed our business workflow. Highly recommended!",
     },
+
     {
       name: "Priya Verma",
-      company: "Verma Fashion",
+      company: "PV Enterprises",
       review:
-        "The AI Analytics feature helped us increase revenue significantly.",
+        "Inventory and Sales management became super easy using FlowPilot AI.",
     },
+
     {
       name: "Amit Patel",
       company: "Patel Traders",
       review:
-        "Easy to use, fast and extremely professional. Highly recommended!",
+        "The AI Assistant gives amazing business insights. Loved it!",
     },
   ];
 
   return (
     <section
       style={{
-        padding: "90px 60px",
-        background: "#0f172a",
-        color: "white",
+        padding: "90px 80px",
+        background: "#ffffff",
       }}
     >
       <h1
@@ -35,45 +37,59 @@ export default function Testimonials() {
           marginBottom: "50px",
         }}
       >
-        What Our Customers Say
+        What Our Clients Say
       </h1>
 
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
-          gap: "25px",
+          gridTemplateColumns: "repeat(3,1fr)",
+          gap: "30px",
         }}
       >
-        {reviews.map((item, index) => (
+        {reviews.map((item, i) => (
           <div
-            key={index}
+            key={i}
             style={{
-              background: "#1e293b",
-              padding: "30px",
-              borderRadius: "20px",
+              background: "#f8fafc",
+              borderRadius: "18px",
+              padding: "25px",
+              boxShadow: "0 10px 25px rgba(0,0,0,.08)",
             }}
           >
-            <h2>⭐⭐⭐⭐⭐</h2>
+            <h2>{item.name}</h2>
 
             <p
               style={{
-                marginTop: "20px",
-                lineHeight: "1.8",
-                color: "#cbd5e1",
+                color: "#2563eb",
+                fontWeight: "600",
+              }}
+            >
+              {item.company}
+            </p>
+
+            <p
+              style={{
+                marginTop: "15px",
+                color: "#475569",
               }}
             >
               "{item.review}"
             </p>
 
-            <h3 style={{ marginTop: "25px" }}>
-              {item.name}
-            </h3>
-
-            <small>{item.company}</small>
+            <div
+              style={{
+                marginTop: "15px",
+                color: "#f59e0b",
+                fontSize: "20px",
+              }}
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
           </div>
         ))}
       </div>
     </section>
   );
 }
+
