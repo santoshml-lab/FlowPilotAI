@@ -2,27 +2,27 @@ export default function FAQ() {
   const faqs = [
     {
       q: "Is FlowPilot AI free?",
-      a: "Yes, Starter Plan is completely free.",
+      a: "Yes, you can start with our free trial.",
     },
     {
-      q: "Can I use it on mobile?",
-      a: "Yes, FlowPilot AI is fully responsive.",
+      q: "Can I manage inventory?",
+      a: "Yes, FlowPilot AI includes complete inventory management.",
     },
     {
-      q: "Does AI generate reports?",
-      a: "Yes, AI automatically analyzes your business and generates insights.",
+      q: "Does it include AI?",
+      a: "Yes, AI Assistant and Business Analytics are built in.",
     },
     {
-      q: "Is my data secure?",
-      a: "Yes, your data is securely stored using Supabase.",
+      q: "Can multiple employees use it?",
+      a: "Yes, Professional and Enterprise plans support multiple users.",
     },
   ];
 
   return (
     <section
       style={{
-        padding: "90px 60px",
-        background: "#f8fafc",
+        padding: "90px 80px",
+        background: "white",
       }}
     >
       <h1
@@ -35,35 +35,20 @@ export default function FAQ() {
         Frequently Asked Questions
       </h1>
 
-      <div
-        style={{
-          maxWidth: "900px",
-          margin: "auto",
-        }}
-      >
-        {faqs.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              background: "white",
-              padding: "25px",
-              borderRadius: "15px",
-              marginBottom: "20px",
-              boxShadow: "0 10px 20px rgba(0,0,0,.08)",
-            }}
-          >
-            <h3>{item.q}</h3>
-            <p
-              style={{
-                color: "#64748b",
-                marginTop: "10px",
-              }}
-            >
-              {item.a}
-            </p>
-          </div>
-        ))}
-      </div>
+      {faqs.map((item, i) => (
+        <div
+          key={i}
+          style={{
+            background: "#f8fafc",
+            padding: "20px",
+            marginBottom: "20px",
+            borderRadius: "15px",
+          }}
+        >
+          <h3>{item.q}</h3>
+          <p>{item.a}</p>
+        </div>
+      ))}
     </section>
   );
 }
