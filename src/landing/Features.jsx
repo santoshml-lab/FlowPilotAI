@@ -99,67 +99,8 @@ export default function Features() {
     </section>
   );
 }
-  return (
-    <section
-      style={{
-        padding: "90px 60px",
-        background: "#f8fafc",
-      }}
-    >
-      <h1
-        style={{
-          textAlign: "center",
-          fontSize: "42px",
-          marginBottom: "50px",
-          color: "#111827",
-        }}
-      >
-        Powerful Features
-      </h1>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
-          gap: "25px",
-        }}
-      >
-        {features.map((item, index) => (
-          <div
-            key={index}
-            style={{
-              background: "white",
-              borderRadius: "18px",
-              padding: "30px",
-              boxShadow: "0 10px 25px rgba(0,0,0,.08)",
-              transition: ".3s",
-            }}
-          >
-            <div style={{ fontSize: "45px" }}>
-              {item.icon}
-            </div>
-
-            <h2
-              style={{
-                marginTop: "20px",
-                color: "#111827",
-              }}
-            >
-              {item.title}
-            </h2>
-
-            <p
-              style={{
-                color: "#64748b",
-                lineHeight: "1.7",
-                marginTop: "12px",
-              }}
-            >
-              {item.desc}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+  
+    
+      
+        
+      
