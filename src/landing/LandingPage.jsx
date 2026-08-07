@@ -17,11 +17,12 @@ export default function LandingPage() {
        <Stats />
       <Testimonials />
       <Pricing />
+      <FAQ />
       
        <DashboardPreview />
-      <Pricing />
       
-      <FAQ />
+      
+      
     </>
   );
 }
