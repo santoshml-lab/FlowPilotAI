@@ -3,11 +3,15 @@ import { supabase } from "../lib/supabase";
 
 export default function Profile() {
   const [profile, setProfile] = useState({
-    full_name: "",
-    company: "",
-    phone: "",
-    address: "",
-  });
+  full_name: "",
+  company: "",
+  phone: "",
+  address: "",
+  avatar_url: "",
+});
+    
+    
+    
   
   
   
