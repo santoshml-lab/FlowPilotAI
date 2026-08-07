@@ -11,6 +11,8 @@ export default function Navbar({ setPage }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const { dark, toggleTheme } = useTheme();
   const [profilePic, setProfilePic] = useState("");
+  const [userName, setUserName] = useState("User");
+const [userEmail, setUserEmail] = useState("");
   
   
   
@@ -50,13 +52,19 @@ async function logout() {
 
   const { data } = await supabase
     .from("profiles")
-    .select("avatar_url")
+    .select("full_name, avatar_url")
     .eq("id", user.id)
     .single();
 
-  if (data?.avatar_url) {
-    setProfilePic(data.avatar_url);
-  }
+  if (data?.full_name) {
+  setUserName(data.full_name);
+}
+
+if (user?.email) {
+  setUserEmail(user.email);
+}
+    
+  
   }
 
   
@@ -241,7 +249,16 @@ async function logout() {
           fontWeight: "bold",
         }}
       >
-        👤 Admin
+        👤 {userName}
+        <div
+  style={{
+    fontSize: "12px",
+    color: "#94a3b8",
+    marginTop: "5px",
+  }}
+>
+  {userEmail}
+</div>
       </div>
 
       <div
