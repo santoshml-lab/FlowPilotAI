@@ -5,6 +5,7 @@ import DashboardPreview from "./DashboardPreview";
 import Pricing from "./Pricing";
 import Testimonials from "./Testimonials";
 import FAQ from "./FAQ";
+import Stats from "./Stats";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,9 @@ export default function LandingPage() {
       <LandingNavbar />
       <Hero />
       <Features />
+      <Hero />
+<Features />
+<Stats />
        <DashboardPreview />
       <Pricing />
       <Testimonials />
