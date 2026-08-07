@@ -15,9 +15,10 @@ export default function LandingPage() {
       <Features />
 
        <Stats />
+      <Testimonials />
        <DashboardPreview />
       <Pricing />
-      <Testimonials />
+      
       <FAQ />
     </>
   );
