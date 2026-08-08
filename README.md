@@ -4,7 +4,7 @@
 
 ## 🌐 https://flow-pilot-ai-six.vercel.app/
 
-🔗 https://github.com/santoshml-lab/FlowPilotAI/blob/main/demo.mp4
+🔗 https://github.com/FlowPilotAI/blob/main/demo.mp4
 
 
 
