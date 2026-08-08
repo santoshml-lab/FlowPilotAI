@@ -6,7 +6,7 @@
 
 🔗 https://github.com/santoshml-lab/FlowPilotAI/blob/main/public/demo.mp4
 
-🎥 Demo Video: Available on the landing page
+
 
 ---
 
